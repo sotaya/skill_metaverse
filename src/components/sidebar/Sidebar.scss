@@ -1,0 +1,116 @@
+.sidebar {
+  display: flex;
+  flex: 0.25;
+  width: 80px;
+  height: 100vh;
+
+  .sidebarLeft {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #1a1c20;
+    padding: 5px 8px;
+
+    .serverIcon {
+      width: 40px;
+      height: 40px;
+      background-color: #33363d;
+      border-radius: 9999px;
+      margin-bottom: 10px;
+      position: relative;
+      margin-top: 7px;
+
+      .logIcon {
+        color: white;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        cursor: pointer;
+      }
+    }
+    .sidebarFooter {
+      position: absolute;
+      bottom: 0;
+      display: flex;
+      align-items: center;
+      padding-bottom: 10px;
+      flex-direction: column;
+
+      .sidebarAccount {
+        align-items: center;
+        display: flex;
+        padding: 10px;
+        color: white;
+        cursor: pointer;
+
+        & > svg {
+          font-size: 2rem;
+          margin-bottom: 12px;
+        }
+
+        & > svg:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+
+  .memoModal {
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+    width: 320px;
+    background: #f9fafb;
+    border: 1px solid #bdbdbd;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.18);
+    padding: 20px;
+    z-index: 1000;
+    transition: box-shadow 0.2s;
+  }
+
+  .memoModalHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+
+  .memoModalTitle {
+    font-weight: bold;
+    font-size: 18px;
+    color: #333;
+  }
+
+  .memoModalClose {
+    background: #eee;
+    border: none;
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    font-size: 18px;
+    cursor: pointer;
+    color: #888;
+    transition: background 0.2s;
+
+    &:hover {
+      background: #e0e0e0;
+    }
+  }
+
+  .memoModalTextarea {
+    width: 100%;
+    height: 110px;
+    margin-top: 4px;
+    padding: 10px;
+    border: 1.5px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 15px;
+    resize: vertical;
+    outline: none;
+    background: #fff;
+    box-sizing: border-box;
+    transition: border-color 0.2s;
+  }
+}

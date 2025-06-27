@@ -1,0 +1,11 @@
+.App {
+  display: flex;
+  height: 100vh;
+
+  .app-main {
+    display: flex;
+    flex: 1;
+    height: 100vh;
+    overflow: hidden;
+  }
+}

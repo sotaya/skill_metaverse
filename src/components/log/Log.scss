@@ -1,0 +1,54 @@
+.Log {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 340px;
+  height: 100vh;
+  background: #181a20;
+  box-shadow: -4px 0 24px rgba(0, 0, 0, 0.35);
+  border-left: 1px solid #23242a;
+  z-index: 1200;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  font-family: "Segoe UI", "Meiryo", sans-serif;
+}
+
+.LogHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #23242a;
+  color: #fff;
+  padding: 18px 22px;
+  font-size: 1.15rem;
+  font-weight: 600;
+  border-bottom: 1px solid #23242a;
+}
+
+.LogClose {
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: background 0.2s;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.LogClose:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.LogBody {
+  padding: 20px;
+  background: #181a20;
+  color: #e0e0e0;
+  flex: 1;
+  overflow-y: auto;
+  font-size: 1rem;
+}
