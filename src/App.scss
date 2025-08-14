@@ -1,0 +1,13 @@
+.App {
+  display: flex;
+  height: 100vh;
+  position: relative;
+}
+
+.app-main {
+  display: flex;
+  flex: 1;
+  height: 100vh;
+  overflow: hidden;
+  padding-left: 80px;
+}

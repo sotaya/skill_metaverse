@@ -1,0 +1,49 @@
+.time-restriction-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+  color: white;
+  text-align: center;
+
+  .message-box {
+    background-color: rgba(45, 58, 75, 0.9);
+    padding: 30px 40px;
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    p {
+      margin: 0;
+      font-size: 1.2rem;
+      font-weight: bold;
+      white-space: pre-wrap; // To render newlines
+    }
+
+    .logout-button {
+      margin-top: 20px;
+      padding: 10px 25px;
+      font-size: 1rem;
+      font-weight: bold;
+      color: #fff;
+      background-color: #dc3545;
+      border: 1px solid #dc3545;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.2s, border-color 0.2s;
+
+      &:hover {
+        background-color: #c82333;
+        border-color: #bd2130;
+      }
+    }
+  }
+}

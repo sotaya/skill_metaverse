@@ -1,0 +1,99 @@
+.license-info-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  color: #333;
+}
+
+.license-info-header {
+  display: flex;
+  align-items: center;
+  padding: 10px 15px;
+  border-bottom: 1px solid #e0e0e0;
+  flex-shrink: 0;
+}
+
+.license-back-button {
+  background: none;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  color: #007bff;
+  padding: 5px 10px;
+  margin-right: 15px;
+  border-radius: 5px;
+
+  &:hover {
+    background-color: #f0f0f0;
+  }
+}
+
+.license-info-title {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.license-info-content {
+  padding: 15px 20px;
+  overflow-y: auto;
+  flex-grow: 1;
+
+  h3 {
+    font-size: 1.2em;
+    border-bottom: 2px solid #f0f0f0;
+    padding-bottom: 5px;
+    margin-top: 0;
+  }
+
+  h4 {
+    font-size: 1.1em;
+    color: #555;
+  }
+
+  p {
+    line-height: 1.6;
+    font-size: 14px;
+  }
+
+  a {
+    color: #007bff;
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.license-section {
+  margin-bottom: 25px;
+}
+
+.license-notice {
+  background-color: #fffbe6;
+  border: 1px solid #ffe58f;
+  border-radius: 5px;
+  padding: 10px 15px;
+  margin-bottom: 1em;
+}
+
+/* GPL警告用のスタイル */
+.license-notice.warning {
+  background-color: #fff2f0;
+  border: 1px solid #ffccc7;
+  color: #a8071a;
+}
+
+.credits-box {
+  background-color: #f5f5f5;
+  border: 1px solid #e0e0e0;
+  border-radius: 5px;
+  padding: 15px;
+  max-height: 200px;
+  overflow-y: auto;
+  font-size: 12px;
+  white-space: pre-wrap;
+  word-break: break-all;
+}

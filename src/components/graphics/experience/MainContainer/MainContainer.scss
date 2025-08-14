@@ -1,0 +1,7 @@
+.chat-wrapper,
+.bot-chat-wrapper,
+.my-chat-wrapper {
+  position: absolute;
+  left: var(--x-pos);
+  top: var(--y-pos);
+}

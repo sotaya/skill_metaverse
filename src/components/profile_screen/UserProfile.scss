@@ -1,0 +1,151 @@
+.user-profile-loading {
+  text-align: center;
+  color: #888;
+  margin-top: 2rem;
+}
+
+.user-profile-container {
+  text-align: center;
+  padding-top: 1rem;
+}
+
+.user-profile-header,
+.user-follow-stats {
+  border-bottom: 1px solid #e0e0e0;
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+}
+
+.user-profile-header h2 {
+  margin: 0.5rem 0 0 0;
+  font-size: 1.4rem;
+}
+
+/* Updated styles for follow stats section */
+.profile-follow-stats {
+  display: flex;
+  justify-content: center;
+  gap: 2rem; /* Increased gap for better spacing */
+  margin: 1.5rem 0; /* Added margin for separation */
+
+  .follow-stat-button {
+    background: none;
+    border: none;
+    padding: 0.75rem 1rem; /* Increased padding */
+    border-radius: 12px; /* Slightly more rounded corners */
+    cursor: pointer;
+    display: flex;
+    flex-direction: column; /* Stack text vertically */
+    align-items: center;
+    transition: all 0.2s ease-in-out; /* Smooth transition for hover effects */
+    color: #555; /* Default text color */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); /* Subtle shadow */
+
+    &:hover {
+      background-color: #f0f4f8; /* Light background on hover */
+      color: #1976d2; /* Primary color on hover */
+      transform: translateY(-2px); /* Slight lift effect */
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* More pronounced shadow on hover */
+    }
+
+    strong {
+      font-size: 1.6rem; /* Larger number */
+      font-weight: 700;
+      color: #2d3a4b; /* Darker color for numbers */
+      margin-bottom: 0.2rem; /* Space between number and label */
+    }
+
+    span {
+      font-size: 0.85rem; /* Smaller label text */
+      text-transform: uppercase; /* Uppercase for labels */
+      letter-spacing: 0.05em; /* A bit of letter spacing */
+      color: #888; /* Lighter color for labels */
+    }
+  }
+}
+
+.user-profile-details {
+  text-align: left;
+  font-size: 0.95rem;
+  p {
+    margin-bottom: 1rem;
+    color: #555;
+    line-height: 1.6;
+    strong {
+      color: #2d3a4b;
+      display: block;
+      margin-bottom: 0.25rem;
+      font-size: 0.9rem;
+    }
+  }
+}
+
+// Other existing styles from ProfileScreen.scss (if merged)
+.profile-main-content {
+  padding: 20px;
+  padding-top: 60px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 15px;
+  padding-bottom: 25px;
+  border-bottom: 1px solid #eeeeee;
+  margin-bottom: 25px;
+
+  .profile-info {
+    h2 {
+      margin: 10px 0 5px;
+      font-size: 1.8em;
+      font-weight: 600;
+      color: #222222;
+    }
+
+    .profile-status {
+      margin: 0;
+      font-size: 1em;
+      color: #777777;
+    }
+  }
+}
+
+.profile-body {
+  .profile-section {
+    margin-bottom: 25px;
+
+    h3 {
+      margin-bottom: 15px;
+      font-size: 1.2em;
+      color: #555555;
+      font-weight: 500;
+      border: none;
+    }
+
+    p {
+      color: #444444;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      line-height: 1.6;
+    }
+  }
+
+  .profile-skills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+
+    .skill-tag {
+      background-color: #f0f0f0;
+      color: #555555;
+      padding: 6px 12px;
+      border-radius: 5px;
+      font-size: 0.95em;
+    }
+  }
+}
