@@ -1,5 +1,3 @@
-// ファイル: src/components/graphics/avatar/useAvatarTextures.ts
-
 import { useMemo, useState, useEffect } from "react";
 import { Texture, Rectangle, BaseTexture } from "pixi.js";
 
@@ -105,3 +103,4 @@ export const useAvatarTextures = (
 
   return textures;
 };
+
