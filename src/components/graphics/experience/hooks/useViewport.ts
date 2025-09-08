@@ -13,14 +13,8 @@ interface UseViewportProps {
 }
 
 export const useViewport = ({ scale, canvasSize }: UseViewportProps) => {
-  // --- スムーズなカメラ追従のための修正 ---
-
-  // 画面の再描画をトリガーするためのstate
   const [viewportPosition, setViewportPosition] = useState({ x: 0, y: 0 });
-
-  // 実際のカメラの現在位置（毎フレーム更新される）
   const currentPosition = useRef({ x: 0, y: 0 });
-  // カメラが目指すべき目標位置
   const targetPosition = useRef({ x: 0, y: 0 });
 
   const isDragging = useRef(false);
@@ -44,7 +38,6 @@ export const useViewport = ({ scale, canvasSize }: UseViewportProps) => {
     [canvasSize.width, canvasSize.height, scale]
   );
 
-  // アバターが動いたときに、カメラの「目標位置」を更新する
   const handleAvatarMove = useCallback(
     (avatarPos: { x: number; y: number }) => {
       if (!canvasSize.width || !canvasSize.height) return;
@@ -52,13 +45,11 @@ export const useViewport = ({ scale, canvasSize }: UseViewportProps) => {
         x: -avatarPos.x * scale + canvasSize.width / 2,
         y: -avatarPos.y * scale + canvasSize.height / 2,
       };
-      // stateを直接更新するのではなく、目標位置を更新する
       targetPosition.current = clampPosition(idealPos);
     },
     [canvasSize.width, canvasSize.height, scale, clampPosition]
   );
 
-  // 初期位置を設定する
   useEffect(() => {
     const initialAvatarPos = { x: DEFAULT_POS_X, y: DEFAULT_POS_Y };
     if (!canvasSize.width || !canvasSize.height) return;
@@ -74,7 +65,6 @@ export const useViewport = ({ scale, canvasSize }: UseViewportProps) => {
     setViewportPosition(initialPos);
   }, [canvasSize.width, canvasSize.height, scale, clampPosition]);
 
-  // --- カメラを滑らかに動かすためのアニメーションループ ---
   useEffect(() => {
     let animationFrameId: number;
 
@@ -85,13 +75,11 @@ export const useViewport = ({ scale, canvasSize }: UseViewportProps) => {
       const dx = target.x - current.x;
       const dy = target.y - current.y;
 
-      // 目標位置に十分に近づいたら、処理をスキップ
       if (Math.abs(dx) < 0.1 && Math.abs(dy) < 0.1) {
         animationFrameId = requestAnimationFrame(animate);
         return;
       }
 
-      // イージング（補間）係数。0に近いほど滑らかに、1に近いほど速く動く
       const easingFactor = 0.1;
       const newX = current.x + dx * easingFactor;
       const newY = current.y + dy * easingFactor;
@@ -107,7 +95,7 @@ export const useViewport = ({ scale, canvasSize }: UseViewportProps) => {
     return () => {
       cancelAnimationFrame(animationFrameId);
     };
-  }, []); // このeffectはマウント時に一度だけ実行する
+  }, []);
 
   const handleMouseDown = useCallback((e: React.MouseEvent) => {
     isDragging.current = true;
@@ -126,7 +114,6 @@ export const useViewport = ({ scale, canvasSize }: UseViewportProps) => {
         y: currentPosition.current.y + dy,
       });
 
-      // ドラッグ中はアニメーションを止め、即座に位置を反映
       currentPosition.current = newPos;
       targetPosition.current = newPos;
       setViewportPosition(newPos);

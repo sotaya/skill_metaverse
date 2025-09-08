@@ -47,7 +47,7 @@ interface ExperienceProps {
   myChatPartnerId: string | null;
   isAppActive: boolean;
   restrictionMessage: string;
-  onLogout: () => void; // propsを追加
+  onLogout: () => void;
 }
 
 export const Experience = ({
@@ -63,7 +63,7 @@ export const Experience = ({
   myChatPartnerId,
   isAppActive,
   restrictionMessage,
-  onLogout, // propsを受け取る
+  onLogout,
 }: ExperienceProps) => {
   const [canvasSize, setCanvasSize] = useState({ width: 0, height: 0 });
   const [scale] = useState(1.8);

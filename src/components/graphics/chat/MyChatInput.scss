@@ -91,7 +91,6 @@
   bottom: 7px;
 }
 
-/* Add this rule to make the examples button a rounded square */
 .my-chat-input-button.examples {
   border-radius: 6px;
   background-color: #efefef;
@@ -127,9 +126,8 @@
   .example-messages-list {
     max-height: 80px;
     overflow-y: auto;
-    padding-right: 4px; // for scrollbar
+    padding-right: 4px;
 
-    // Custom scrollbar
     &::-webkit-scrollbar {
       width: 6px;
     }

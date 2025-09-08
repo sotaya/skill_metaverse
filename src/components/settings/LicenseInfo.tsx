@@ -6,7 +6,6 @@ interface LicenseInfoProps {
 }
 
 const LicenseInfo: React.FC<LicenseInfoProps> = ({ onBack }) => {
-  // Universal LPC Sprite Sheet Character Generatorから取得した正確なクレジット情報
   const lpcCredits = `
 [ アバター1 ]
 body/bodies/male/amber.png
@@ -954,7 +953,6 @@ legs/pants2/thin/blue.png
             アバターは「Universal LPC Sprite Sheet Character
             Generator」を使用して作成されました。
           </p>
-          {/* GPLに関する重要な警告 */}
           <p className="license-notice warning">
             <strong>
               【重要】アバターの一部にはGPL
@@ -962,7 +960,6 @@ legs/pants2/thin/blue.png
               3.0ライセンスの下で公開する義務が生じる可能性があります。
             </strong>
           </p>
-          {/* CC-BY-SAの継承に関する宣言 */}
           <p className="license-notice">
             <strong>
               CC-BY-SA 4.0ライセンスのパーツが含まれるアバターは、それ自体が{" "}

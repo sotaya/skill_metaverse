@@ -21,45 +21,44 @@
   font-size: 1.4rem;
 }
 
-/* Updated styles for follow stats section */
 .profile-follow-stats {
   display: flex;
   justify-content: center;
-  gap: 2rem; /* Increased gap for better spacing */
-  margin: 1.5rem 0; /* Added margin for separation */
+  gap: 2rem;
+  margin: 1.5rem 0;
 
   .follow-stat-button {
     background: none;
     border: none;
-    padding: 0.75rem 1rem; /* Increased padding */
-    border-radius: 12px; /* Slightly more rounded corners */
+    padding: 0.75rem 1rem;
+    border-radius: 12px;
     cursor: pointer;
     display: flex;
-    flex-direction: column; /* Stack text vertically */
+    flex-direction: column;
     align-items: center;
-    transition: all 0.2s ease-in-out; /* Smooth transition for hover effects */
-    color: #555; /* Default text color */
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); /* Subtle shadow */
+    transition: all 0.2s ease-in-out;
+    color: #555;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 
     &:hover {
-      background-color: #f0f4f8; /* Light background on hover */
-      color: #1976d2; /* Primary color on hover */
-      transform: translateY(-2px); /* Slight lift effect */
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* More pronounced shadow on hover */
+      background-color: #f0f4f8;
+      color: #1976d2;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     }
 
     strong {
-      font-size: 1.6rem; /* Larger number */
+      font-size: 1.6rem;
       font-weight: 700;
-      color: #2d3a4b; /* Darker color for numbers */
-      margin-bottom: 0.2rem; /* Space between number and label */
+      color: #2d3a4b;
+      margin-bottom: 0.2rem;
     }
 
     span {
-      font-size: 0.85rem; /* Smaller label text */
-      text-transform: uppercase; /* Uppercase for labels */
-      letter-spacing: 0.05em; /* A bit of letter spacing */
-      color: #888; /* Lighter color for labels */
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #888;
     }
   }
 }
@@ -80,7 +79,6 @@
   }
 }
 
-// Other existing styles from ProfileScreen.scss (if merged)
 .profile-main-content {
   padding: 20px;
   padding-top: 60px;

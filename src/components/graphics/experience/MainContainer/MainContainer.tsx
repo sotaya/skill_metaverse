@@ -4,7 +4,7 @@ import { useCallback, useEffect, useMemo, useState, useRef } from "react";
 import backgroundAsset from "../../../../assets/space-stars.jpg";
 import { Room } from "../../rooms/Room";
 import { Avatar } from "../../avatar/Avatar";
-import { Bot } from "../../Bot/Bot";
+import { Bot } from "../../bot/Bot";
 import { GAME_WIDTH, GAME_HEIGHT } from "../../constants/game-world";
 import { doc, updateDoc } from "firebase/firestore";
 import { db } from "../../../../firebase";
@@ -26,7 +26,6 @@ interface IMainContainerProps {
   myChatPartnerId: string | null;
 }
 
-// 向きを計算する関数
 const getDirectionTo = (
   from: IPosition,
   to: IPosition
@@ -62,7 +61,6 @@ export const MainContainer = ({
   const [myOverrideDirection, setMyOverrideDirection] =
     useState<Direction | null>(null);
 
-  // スロットリング（間引き）用のRefを追加
   const throttleTimeout = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
@@ -126,10 +124,8 @@ export const MainContainer = ({
 
   const updateAvatarPosition = useCallback(
     (pos: IPosition, direction: Direction | null) => {
-      // 自分のカメラは即座に動かす
       onAvatarMove(pos, direction);
 
-      // Firestoreへの書き込みは150ミリ秒に1回に間引く
       if (!throttleTimeout.current) {
         saveUserPositionToRoom(pos, direction);
         throttleTimeout.current = setTimeout(() => {
@@ -140,7 +136,6 @@ export const MainContainer = ({
     [onAvatarMove, saveUserPositionToRoom]
   );
 
-  // コンポーネントがアンマウントされるときにタイムアウトをクリア
   useEffect(() => {
     return () => {
       if (throttleTimeout.current) {

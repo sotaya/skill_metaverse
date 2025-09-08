@@ -5,13 +5,13 @@ import { doc, setDoc } from "firebase/firestore";
 import { db } from "../../firebase";
 import { useAppSelector } from "../../app/hooks";
 import "./Settings.scss";
-import LicenseInfo from "./LicenseInfo"; // LicenseInfoコンポーネントをインポート
+import LicenseInfo from "./LicenseInfo";
 
 const Settings = ({ onClose }: { onClose: () => void }) => {
   const navigate = useNavigate();
   const user = useAppSelector((state) => state.user.user);
   const roomId = "default-lobby";
-  const [showLicense, setShowLicense] = useState(false); // ライセンス表示用のstateを追加
+  const [showLicense, setShowLicense] = useState(false);
 
   const resetUserPosition = async () => {
     if (user && roomId) {
@@ -50,10 +50,8 @@ const Settings = ({ onClose }: { onClose: () => void }) => {
   return (
     <div className="settings-panel-content">
       {showLicense ? (
-        // showLicenseがtrueの場合、ライセンス情報を表示
         <LicenseInfo onBack={() => setShowLicense(false)} />
       ) : (
-        // showLicenseがfalseの場合、通常の設定画面を表示
         <>
           <div className="settingsHeader">
             <span>設定</span>

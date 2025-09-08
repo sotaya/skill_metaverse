@@ -7,7 +7,6 @@ import {
   OFFSET_Y,
 } from "../constants/game-world";
 
-//フィールド画像の描画
 export const Room = () => {
   return (
     <Sprite

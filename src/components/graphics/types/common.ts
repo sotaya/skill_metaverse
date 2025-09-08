@@ -1,4 +1,3 @@
-//2D描画における型管理
 export interface IPosition {
   x: number;
   y: number;

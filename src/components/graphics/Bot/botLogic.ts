@@ -316,7 +316,6 @@ const defaultResponse =
 export const getBotResponse = (message: string): string => {
   const lowerCaseMessage = message.toLowerCase().trim();
 
-  // 完全一致を優先
   if (responses[lowerCaseMessage]) {
     const possibleResponses = responses[lowerCaseMessage];
     return possibleResponses[
@@ -324,7 +323,6 @@ export const getBotResponse = (message: string): string => {
     ];
   }
 
-  // 部分一致
   for (const keyword in responses) {
     if (lowerCaseMessage.includes(keyword)) {
       const possibleResponses = responses[keyword];

@@ -70,7 +70,6 @@ const UserProfile = ({ userId, onBack }: UserProfileProps) => {
           <p className="profile-status">{userData.status}</p>
         </div>
       </div>
-      {/* Follow stats section updated */}
       <div className="profile-body">
         <div className="profile-follow-stats">
           <button className="follow-stat-button">

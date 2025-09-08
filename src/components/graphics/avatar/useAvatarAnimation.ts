@@ -9,8 +9,6 @@ interface UseAvatarAnimationProps {
 }
 
 /**
- * アバターのアニメーション状態を管理し、現在のフレームのテクスチャを返すフック。
- * パフォーマンス向上のため、テクスチャが実際に変更された場合のみstateを更新します。
  * @param spritesheetUrl スプライトシートのURL
  * @param animationSpeed アニメーションの速度
  * @returns {object} 現在表示すべきテクスチャと、アニメーションを更新する関数
@@ -35,7 +33,6 @@ export const useAvatarAnimation = ({
       let nextTexture: Texture;
 
       if (!isMoving) {
-        // 静止している場合は、方向に応じた静止フレームを表示
         frameRef.current = 0;
         switch (direction) {
           case "UP":
@@ -53,7 +50,6 @@ export const useAvatarAnimation = ({
             break;
         }
       } else {
-        // 向きが変わったらアニメーションをリセット
         if (direction !== lastDirectionRef.current) {
           frameRef.current = 0;
         }
@@ -61,7 +57,6 @@ export const useAvatarAnimation = ({
 
         elapsedTimeRef.current += delta;
 
-        // アニメーションフレームを更新
         if (elapsedTimeRef.current * animationSpeed >= 1) {
           frameRef.current += 1;
           elapsedTimeRef.current = 0;
@@ -80,14 +75,12 @@ export const useAvatarAnimation = ({
             break;
         }
 
-        // アニメーションをループ
         if (frameRef.current >= animationFrames.length) {
           frameRef.current = 0;
         }
         nextTexture = animationFrames[frameRef.current];
       }
 
-      // テクスチャが実際に変更された場合のみstateを更新
       setCurrentTexture((current) =>
         current !== nextTexture ? nextTexture : current
       );
@@ -95,7 +88,6 @@ export const useAvatarAnimation = ({
     [textures, animationSpeed]
   );
 
-  // 初期テクスチャを設定
   useEffect(() => {
     if (textures && !currentTexture) {
       setCurrentTexture(textures.IDLE_DOWN);

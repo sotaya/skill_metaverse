@@ -10,7 +10,6 @@ export const calculateCanvasSize = () => {
 };
 
 /**
- * 現在位置から指定された方向の次の目標タイル座標を計算します。
  * @param x 現在のX座標
  * @param y 現在のY座標
  * @param direction 移動方向
@@ -39,7 +38,6 @@ export const calculateNewTarget = (
 };
 
 /**
- * 指定したタイルが移動可能かどうかをチェックします。
  * @param target チェックする目標座標
  * @returns 移動可能であればtrue
  */
@@ -97,7 +95,6 @@ export const handleMovement = (
 };
 
 /**
- * 全てのプレイヤーとBotの位置情報に基づいて衝突マップを更新します。
  * @param allPositions 全プレイヤーの位置情報を含むオブジェクト
  * @param botPos Botの位置情報
  * @param currentUserId 現在操作しているユーザーのID（このユーザーは障害物として扱わない）
@@ -107,14 +104,12 @@ export const updateCollisionMapForAllCharacters = (
   botPos: IPosition,
   currentUserId: string
 ) => {
-  // まず、キャラクターに由来する衝突情報(値が2)をリセット
   for (let i = 0; i < COLLISION_MAP.length; i++) {
     if (COLLISION_MAP[i] === 2) {
       COLLISION_MAP[i] = 0;
     }
   }
 
-  // 他のプレイヤーの位置を衝突マップに設定
   Object.entries(allPositions).forEach(([uid, player]) => {
     if (uid !== currentUserId && player.position) {
       const row = Math.round(player.position.y / TILE_SIZE);
@@ -127,7 +122,6 @@ export const updateCollisionMapForAllCharacters = (
     }
   });
 
-  // Botの位置を衝突マップに設定
   if (botPos) {
     const botRow = Math.round(botPos.y / TILE_SIZE);
     const botCol = Math.round(botPos.x / TILE_SIZE);

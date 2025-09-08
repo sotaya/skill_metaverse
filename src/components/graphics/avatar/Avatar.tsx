@@ -94,7 +94,6 @@ const AvatarComponent: React.FC<IAvatarProps> = ({
 
   useEffect(() => {
     onMove(position.current, "DOWN");
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useTick((delta) => {
@@ -130,7 +129,6 @@ const AvatarComponent: React.FC<IAvatarProps> = ({
       }
     }
 
-    // アニメーションの再生条件を「キーが押されているか」から「物理的に移動中か」に変更
     updateAnimation(currentDirection.current, isMoving.current, delta);
   });
 

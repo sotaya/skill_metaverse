@@ -51,7 +51,7 @@ const MyChatInput: React.FC<MyChatInputProps> = ({
       setCopiedText(text);
       setTimeout(() => {
         setCopiedText(null);
-      }, 1500); // Keep "Copied!" message a bit longer
+      }, 1500);
     } catch (err) {
       console.error("Failed to copy text: ", err);
     }
