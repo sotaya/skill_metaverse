@@ -1,3 +1,5 @@
+import { getGeminiResponse } from "../../../services/gemini";
+
 const responses: { [key: string]: string[] } = {
   // --- あいさつ ---
   こんにちは: [
@@ -313,7 +315,7 @@ const responses: { [key: string]: string[] } = {
 const defaultResponse =
   "すみません、よく分かりませんでした。別の言葉で試していただけますか？プログラミングについて、もっと具体的な質問をしてみてください。";
 
-export const getBotResponse = (message: string): string => {
+const getRuleBasedBotResponse = (message: string): string => {
   const lowerCaseMessage = message.toLowerCase().trim();
 
   if (responses[lowerCaseMessage]) {
@@ -332,4 +334,23 @@ export const getBotResponse = (message: string): string => {
     }
   }
   return defaultResponse;
+};
+
+/**
+ * @param message ユーザーからのメッセージ文字列
+ * @param userId ユーザーの一意のID
+ * @param isAiEnabled AIを使用するかどうかのフラグ
+ * @returns ボットからの応答文字列を含むPromise
+ */
+export const getBotResponse = async (
+  message: string,
+  userId: string,
+  isAiEnabled: boolean
+): Promise<string> => {
+  if (isAiEnabled) {
+    const response = await getGeminiResponse(message, userId);
+    return response;
+  } else {
+    return Promise.resolve(getRuleBasedBotResponse(message));
+  }
 };
