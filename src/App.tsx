@@ -36,11 +36,11 @@ import {
   QueryDocumentSnapshot,
   Timestamp,
 } from "firebase/firestore";
-import { getAuth, signOut } from "firebase/auth"; // Corrected import path
+import { getAuth, signOut } from "firebase/auth";
 import { LogEntry, ParticipantData } from "./Types";
 import ChatLog from "./components/chat_log/ChatLog";
 import { TILE_SIZE } from "./components/graphics/constants/game-world";
-import { getBotResponse } from "./components/graphics/bot/botLogic";
+import { getBotResponse } from "./components/graphics/bot/BotLogic";
 import ProfileScreen from "./components/profile_screen/ProfileScreen";
 
 type ProfileView = {
