@@ -94,7 +94,7 @@ const AvatarComponent: React.FC<IAvatarProps> = ({
 
   useEffect(() => {
     onMove(position.current, "DOWN");
-  }, []);
+  }, [onMove]);
 
   useTick((delta) => {
     const controlsDirection = getControlsDirection();

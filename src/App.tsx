@@ -70,6 +70,8 @@ function App() {
     data: null,
   });
 
+  const [isAiEnabled, setIsAiEnabled] = useState(false);
+
   const [timeRestriction, setTimeRestriction] =
     useState<TimeRestriction | null>(null);
   const [isAppActive, setIsAppActive] = useState(true);
@@ -278,27 +280,35 @@ function App() {
       });
 
       if (myChatPartnerId === "Bot") {
-        setTimeout(async () => {
-          const botResponseText = getBotResponse(messageText);
-          const botRef = doc(
-            db,
-            "rooms",
-            "default-lobby",
-            "participants",
-            "Bot"
-          );
-          await setDoc(
-            botRef,
-            {
-              message: botResponseText,
-              messageTimestamp: new Date(),
-            },
-            { merge: true }
-          );
-        }, 500);
+        const botRef = doc(db, "rooms", "default-lobby", "participants", "Bot");
+        await setDoc(
+          botRef,
+          {
+            isTyping: true,
+            message: "考え中...",
+            messageTimestamp: new Date(),
+          },
+          { merge: true }
+        );
+
+        const botResponseText = await getBotResponse(
+          messageText,
+          user.uid,
+          isAiEnabled
+        );
+
+        await setDoc(
+          botRef,
+          {
+            message: botResponseText,
+            messageTimestamp: new Date(),
+            isTyping: false,
+          },
+          { merge: true }
+        );
       }
     },
-    [user, myChatPartnerId]
+    [user, myChatPartnerId, isAiEnabled]
   );
 
   const handleFollow = useCallback(
@@ -425,6 +435,18 @@ function App() {
     prevIsChatActive.current = isChatActive;
     prevChatPartnerId.current = myChatPartnerId;
   }, [isChatActive, myChatPartnerId, addLog, sharedLinks]);
+
+  useEffect(() => {
+    const aiConfigDocRef = doc(db, "bot_ai", "Bot_AI");
+    const unsubscribe = onSnapshot(aiConfigDocRef, (docSnap) => {
+      if (docSnap.exists()) {
+        setIsAiEnabled(docSnap.data().isAiEnabled === true);
+      } else {
+        setIsAiEnabled(false);
+      }
+    });
+    return () => unsubscribe();
+  }, []);
 
   useEffect(() => {
     const timeDocRef = doc(db, "times", "time_usage");
