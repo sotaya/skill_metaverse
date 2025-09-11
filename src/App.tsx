@@ -39,7 +39,11 @@ import {
 import { getAuth, signOut } from "firebase/auth";
 import { LogEntry, ParticipantData } from "./Types";
 import ChatLog from "./components/chat_log/ChatLog";
-import { TILE_SIZE } from "./components/graphics/constants/game-world";
+import {
+  TILE_SIZE,
+  DEFAULT_POS_X,
+  DEFAULT_POS_Y,
+} from "./components/graphics/constants/game-world";
 import { getBotResponse } from "./components/graphics/bot/BotLogic";
 import ProfileScreen from "./components/profile_screen/ProfileScreen";
 
@@ -536,6 +540,27 @@ function App() {
               status: userData?.status || "",
               content: userData?.content || "",
             })
+          );
+          const participantDocRef = doc(
+            db,
+            "rooms",
+            "default-lobby",
+            "participants",
+            loginUser.uid
+          );
+          await setDoc(
+            participantDocRef,
+            {
+              uid: loginUser.uid,
+              userName: userData?.userName || "",
+              avatarId: userData?.avatarId ?? 0,
+              position: { x: DEFAULT_POS_X, y: DEFAULT_POS_Y },
+              direction: "DOWN",
+              chattingWith: null,
+              isTyping: false,
+              message: "",
+            },
+            { merge: true }
           );
         });
         const participantsQuery = query(
