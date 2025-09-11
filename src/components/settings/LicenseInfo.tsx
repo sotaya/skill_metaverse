@@ -1,7 +1,6 @@
 import React from "react";
 import "./LicenseInfo.scss";
 
-// --- 型定義 ---
 interface LicenseInfoProps {
   onBack: () => void;
 }
@@ -34,67 +33,304 @@ interface AvatarCredit {
 
 type CreditItem = SimpleCredit | DetailedCredit | AvatarCredit;
 
-// --- クレジット情報データ ---
+// クレジット情報データ
 const lpcCredits = {
-  // prettier-ignore
   avatar1: {
-    type: "avatar" as const, // <-- 型を明示的に指定
+    type: "avatar" as const,
     name: "アバター1",
-    licenses: [ { name: "OGA-BY 3.0", url: "https://static.opengameart.org/OGA-BY-3.0.txt" }, { name: "CC-BY-SA 3.0", url: "https://creativecommons.org/licenses/by-sa/3.0/" }, { name: "GPL 3.0", url: "https://www.gnu.org/licenses/gpl-3.0.en.html" }, { name: "CC0", url: "http://creativecommons.org/publicdomain/zero/1.0/" }, ],
-    authors: ["bluecarrot16", "JaidynReiman", "Benjamin K. Smith (BenCreating)", "Evert", "Eliza Wyatt (ElizaWy)", "TheraHedwig", "MuffinElZangano", "Durrani", "Johannes Sjölund (wulax)", "Stephen Challener (Redshrike)", "Fabzy"],
-    links: ["https://opengameart.org/content/liberated-pixel-cup-lpc-base-assets-sprites-map-tiles", "https://opengameart.org/content/lpc-medieval-fantasy-character-sprites", "https://github.com/ElizaWy/LPC", "https://opengameart.org/content/the-revolution-hair", "https://opengameart.org/content/lpc-jewelry", "https://opengameart.org/content/lpc-expanded-pants"],
+    licenses: [
+      {
+        name: "OGA-BY 3.0",
+        url: "https://static.opengameart.org/OGA-BY-3.0.txt",
+      },
+      {
+        name: "CC-BY-SA 3.0",
+        url: "https://creativecommons.org/licenses/by-sa/3.0/",
+      },
+      { name: "GPL 3.0", url: "https://www.gnu.org/licenses/gpl-3.0.en.html" },
+      { name: "CC0", url: "http://creativecommons.org/publicdomain/zero/1.0/" },
+    ],
+    authors: [
+      "bluecarrot16",
+      "JaidynReiman",
+      "Benjamin K. Smith (BenCreating)",
+      "Evert",
+      "Eliza Wyatt (ElizaWy)",
+      "TheraHedwig",
+      "MuffinElZangano",
+      "Durrani",
+      "Johannes Sjölund (wulax)",
+      "Stephen Challener (Redshrike)",
+      "Fabzy",
+    ],
+    links: [
+      "https://opengameart.org/content/liberated-pixel-cup-lpc-base-assets-sprites-map-tiles",
+      "https://opengameart.org/content/lpc-medieval-fantasy-character-sprites",
+      "https://github.com/ElizaWy/LPC",
+      "https://opengameart.org/content/the-revolution-hair",
+      "https://opengameart.org/content/lpc-jewelry",
+      "https://opengameart.org/content/lpc-expanded-pants",
+    ],
   },
-  // prettier-ignore
   avatar2: {
-    type: "avatar" as const, // <-- 型を明示的に指定
+    type: "avatar" as const,
     name: "アバター2",
-    licenses: [ { name: "OGA-BY 3.0", url: "https://static.opengameart.org/OGA-BY-3.0.txt" }, { name: "CC-BY-SA 3.0", url: "https://creativecommons.org/licenses/by-sa/3.0/" }, { name: "GPL 3.0", url: "https://www.gnu.org/licenses/gpl-3.0.en.html" }, { name: "GPL 2.0", url: "https://www.gnu.org/licenses/old-licenses/gpl-2.0.html" }, { name: "CC-BY 3.0+", url: "https://creativecommons.org/licenses/by/3.0/" }, ],
-    authors: ["bluecarrot16", "JaidynReiman", "Benjamin K. Smith (BenCreating)", "Evert", "Eliza Wyatt (ElizaWy)", "TheraHedwig", "MuffinElZangano", "Durrani", "Johannes Sjölund (wulax)", "Stephen Challener (Redshrike)", "Matthew Krohn (makrohn)", "Mandi Paugh", "William.Thompsonj"],
-    links: ["https://opengameart.org/content/liberated-pixel-cup-lpc-base-assets-sprites-map-tiles", "https://opengameart.org/content/lpc-medieval-fantasy-character-sprites", "https://github.com/ElizaWy/LPC", "http://opengameart.org/content/lpc-clothing-updates", "https://opengameart.org/content/lpc-expanded-pants", "http://opengameart.org/content/sara-wizard", "https://opengameart.org/content/lpc-expanded-socks-shoes"],
+    licenses: [
+      {
+        name: "OGA-BY 3.0",
+        url: "https://static.opengameart.org/OGA-BY-3.0.txt",
+      },
+      {
+        name: "CC-BY-SA 3.0",
+        url: "https://creativecommons.org/licenses/by-sa/3.0/",
+      },
+      { name: "GPL 3.0", url: "https://www.gnu.org/licenses/gpl-3.0.en.html" },
+      {
+        name: "GPL 2.0",
+        url: "https://www.gnu.org/licenses/old-licenses/gpl-2.0.html",
+      },
+      {
+        name: "CC-BY 3.0+",
+        url: "https://creativecommons.org/licenses/by/3.0/",
+      },
+    ],
+    authors: [
+      "bluecarrot16",
+      "JaidynReiman",
+      "Benjamin K. Smith (BenCreating)",
+      "Evert",
+      "Eliza Wyatt (ElizaWy)",
+      "TheraHedwig",
+      "MuffinElZangano",
+      "Durrani",
+      "Johannes Sjölund (wulax)",
+      "Stephen Challener (Redshrike)",
+      "Matthew Krohn (makrohn)",
+      "Mandi Paugh",
+      "William.Thompsonj",
+    ],
+    links: [
+      "https://opengameart.org/content/liberated-pixel-cup-lpc-base-assets-sprites-map-tiles",
+      "https://opengameart.org/content/lpc-medieval-fantasy-character-sprites",
+      "https://github.com/ElizaWy/LPC",
+      "http://opengameart.org/content/lpc-clothing-updates",
+      "https://opengameart.org/content/lpc-expanded-pants",
+      "http://opengameart.org/content/sara-wizard",
+      "https://opengameart.org/content/lpc-expanded-socks-shoes",
+    ],
   },
-  // prettier-ignore
   avatar3: {
-    type: "avatar" as const, // <-- 型を明示的に指定
+    type: "avatar" as const,
     name: "アバター3",
-    licenses: [ { name: "OGA-BY 3.0", url: "https://static.opengameart.org/OGA-BY-3.0.txt" }, { name: "CC-BY-SA 3.0", url: "https://creativecommons.org/licenses/by-sa/3.0/" }, { name: "GPL 3.0", url: "https://www.gnu.org/licenses/gpl-3.0.en.html" }, ],
-    authors: ["bluecarrot16", "JaidynReiman", "Benjamin K. Smith (BenCreating)", "Evert", "Eliza Wyatt (ElizaWy)", "TheraHedwig", "MuffinElZangano", "Durrani", "Johannes Sjölund (wulax)", "Stephen Challener (Redshrike)", "Manuel Riecke (MrBeast)", "Joe White", "Thane Brimhall (pennomi)", "laetissima"],
-    links: ["https://opengameart.org/content/liberated-pixel-cup-lpc-base-assets-sprites-map-tiles", "https://opengameart.org/content/lpc-medieval-fantasy-character-sprites", "https://opengameart.org/content/lpc-expanded-hair", "https://opengameart.org/content/lpc-gentleman", "http://opengameart.org/content/lpc-clothing-updates", "https://opengameart.org/content/lpc-expanded-pants", "https://opengameart.org/content/lpc-expanded-socks-shoes"],
+    licenses: [
+      {
+        name: "OGA-BY 3.0",
+        url: "https://static.opengameart.org/OGA-BY-3.0.txt",
+      },
+      {
+        name: "CC-BY-SA 3.0",
+        url: "https://creativecommons.org/licenses/by-sa/3.0/",
+      },
+      { name: "GPL 3.0", url: "https://www.gnu.org/licenses/gpl-3.0.en.html" },
+    ],
+    authors: [
+      "bluecarrot16",
+      "JaidynReiman",
+      "Benjamin K. Smith (BenCreating)",
+      "Evert",
+      "Eliza Wyatt (ElizaWy)",
+      "TheraHedwig",
+      "MuffinElZangano",
+      "Durrani",
+      "Johannes Sjölund (wulax)",
+      "Stephen Challener (Redshrike)",
+      "Manuel Riecke (MrBeast)",
+      "Joe White",
+      "Thane Brimhall (pennomi)",
+      "laetissima",
+    ],
+    links: [
+      "https://opengameart.org/content/liberated-pixel-cup-lpc-base-assets-sprites-map-tiles",
+      "https://opengameart.org/content/lpc-medieval-fantasy-character-sprites",
+      "https://opengameart.org/content/lpc-expanded-hair",
+      "https://opengameart.org/content/lpc-gentleman",
+      "http://opengameart.org/content/lpc-clothing-updates",
+      "https://opengameart.org/content/lpc-expanded-pants",
+      "https://opengameart.org/content/lpc-expanded-socks-shoes",
+    ],
   },
-  // prettier-ignore
   avatar4: {
-    type: "avatar" as const, // <-- 型を明示的に指定
+    type: "avatar" as const,
     name: "アバター4",
-    licenses: [ { name: "OGA-BY 3.0", url: "https://static.opengameart.org/OGA-BY-3.0.txt" }, { name: "CC-BY-SA 3.0", url: "https://creativecommons.org/licenses/by-sa/3.0/" }, { name: "GPL 3.0", url: "https://www.gnu.org/licenses/gpl-3.0.en.html" }, { name: "CC0", url: "http://creativecommons.org/publicdomain/zero/1.0/" }, ],
-    authors: ["Benjamin K. Smith (BenCreating)", "bluecarrot16", "TheraHedwig", "Evert", "MuffinElZangano", "Durrani", "Pierre Vigier (pvigier)", "ElizaWy", "Matthew Krohn (makrohn)", "Johannes Sjölund (wulax)", "Stephen Challener (Redshrike)", "Lanea Zimmerman (Sharm)", "JaidynReiman", "Joe White"],
-    links: ["https://opengameart.org/content/liberated-pixel-cup-lpc-base-assets-sprites-map-tiles", "https://opengameart.org/content/lpc-medieval-fantasy-character-sprites", "https://opengameart.org/content/lpc-hair", "https://opengameart.org/content/lpc-7-womens-shirts", "http://opengameart.org/content/lpc-clothing-updates", "https://opengameart.org/content/lpc-expanded-socks-shoes"],
+    licenses: [
+      {
+        name: "OGA-BY 3.0",
+        url: "https://static.opengameart.org/OGA-BY-3.0.txt",
+      },
+      {
+        name: "CC-BY-SA 3.0",
+        url: "https://creativecommons.org/licenses/by-sa/3.0/",
+      },
+      { name: "GPL 3.0", url: "https://www.gnu.org/licenses/gpl-3.0.en.html" },
+      { name: "CC0", url: "http://creativecommons.org/publicdomain/zero/1.0/" },
+    ],
+    authors: [
+      "Benjamin K. Smith (BenCreating)",
+      "bluecarrot16",
+      "TheraHedwig",
+      "Evert",
+      "MuffinElZangano",
+      "Durrani",
+      "Pierre Vigier (pvigier)",
+      "ElizaWy",
+      "Matthew Krohn (makrohn)",
+      "Johannes Sjölund (wulax)",
+      "Stephen Challener (Redshrike)",
+      "Lanea Zimmerman (Sharm)",
+      "JaidynReiman",
+      "Joe White",
+    ],
+    links: [
+      "https://opengameart.org/content/liberated-pixel-cup-lpc-base-assets-sprites-map-tiles",
+      "https://opengameart.org/content/lpc-medieval-fantasy-character-sprites",
+      "https://opengameart.org/content/lpc-hair",
+      "https://opengameart.org/content/lpc-7-womens-shirts",
+      "http://opengameart.org/content/lpc-clothing-updates",
+      "https://opengameart.org/content/lpc-expanded-socks-shoes",
+    ],
   },
-  // prettier-ignore
   avatar5: {
-    type: "avatar" as const, // <-- 型を明示的に指定
+    type: "avatar" as const,
     name: "アバター5",
-    licenses: [ { name: "OGA-BY 3.0", url: "https://static.opengameart.org/OGA-BY-3.0.txt" }, { name: "CC-BY-SA 3.0", url: "https://creativecommons.org/licenses/by-sa/3.0/" }, { name: "GPL 3.0", url: "https://www.gnu.org/licenses/gpl-3.0.en.html" }, { name: "GPL 2.0", url: "https://www.gnu.org/licenses/old-licenses/gpl-2.0.html" }, { name: "CC0", url: "http://creativecommons.org/publicdomain/zero/1.0/" }, ],
-    authors: ["Benjamin K. Smith (BenCreating)", "bluecarrot16", "TheraHedwig", "Evert", "MuffinElZangano", "Durrani", "Pierre Vigier (pvigier)", "ElizaWy", "Matthew Krohn (makrohn)", "Johannes Sjölund (wulax)", "Stephen Challener (Redshrike)", "Lanea Zimmerman (Sharm)", "Nila122", "JaidynReiman"],
-    links: ["https://opengameart.org/content/liberated-pixel-cup-lpc-base-assets-sprites-map-tiles", "https://opengameart.org/content/lpc-medieval-fantasy-character-sprites", "https://opengameart.org/content/lpc-hair", "https://opengameart.org/content/lpc-jewelry", "https://opengameart.org/content/lpc-7-womens-shirts", "https://opengameart.org/content/lpc-expanded-pants", "https://opengameart.org/content/lpc-expanded-socks-shoes"],
+    licenses: [
+      {
+        name: "OGA-BY 3.0",
+        url: "https://static.opengameart.org/OGA-BY-3.0.txt",
+      },
+      {
+        name: "CC-BY-SA 3.0",
+        url: "https://creativecommons.org/licenses/by-sa/3.0/",
+      },
+      { name: "GPL 3.0", url: "https://www.gnu.org/licenses/gpl-3.0.en.html" },
+      {
+        name: "GPL 2.0",
+        url: "https://www.gnu.org/licenses/old-licenses/gpl-2.0.html",
+      },
+      { name: "CC0", url: "http://creativecommons.org/publicdomain/zero/1.0/" },
+    ],
+    authors: [
+      "Benjamin K. Smith (BenCreating)",
+      "bluecarrot16",
+      "TheraHedwig",
+      "Evert",
+      "MuffinElZangano",
+      "Durrani",
+      "Pierre Vigier (pvigier)",
+      "ElizaWy",
+      "Matthew Krohn (makrohn)",
+      "Johannes Sjölund (wulax)",
+      "Stephen Challener (Redshrike)",
+      "Lanea Zimmerman (Sharm)",
+      "Nila122",
+      "JaidynReiman",
+    ],
+    links: [
+      "https://opengameart.org/content/liberated-pixel-cup-lpc-base-assets-sprites-map-tiles",
+      "https://opengameart.org/content/lpc-medieval-fantasy-character-sprites",
+      "https://opengameart.org/content/lpc-hair",
+      "https://opengameart.org/content/lpc-jewelry",
+      "https://opengameart.org/content/lpc-7-womens-shirts",
+      "https://opengameart.org/content/lpc-expanded-pants",
+      "https://opengameart.org/content/lpc-expanded-socks-shoes",
+    ],
   },
-  // prettier-ignore
   avatar6: {
-    type: "avatar" as const, // <-- 型を明示的に指定
+    type: "avatar" as const,
     name: "アバター6",
-    licenses: [ { name: "OGA-BY 3.0", url: "https://static.opengameart.org/OGA-BY-3.0.txt" }, { name: "CC-BY-SA 3.0", url: "https://creativecommons.org/licenses/by-sa/3.0/" }, { name: "GPL 3.0", url: "https://www.gnu.org/licenses/gpl-3.0.en.html" }, { name: "CC0", url: "http://creativecommons.org/publicdomain/zero/1.0/" }, ],
-    authors: ["Benjamin K. Smith (BenCreating)", "bluecarrot16", "TheraHedwig", "Evert", "MuffinElZangano", "Durrani", "Pierre Vigier (pvigier)", "ElizaWy", "Matthew Krohn (makrohn)", "Johannes Sjölund (wulax)", "Stephen Challener (Redshrike)", "thecilekli", "Thane Brimhall (pennomi)", "laetissima", "JaidynReiman", "Joe White"],
-    links: ["https://opengameart.org/content/liberated-pixel-cup-lpc-base-assets-sprites-map-tiles", "https://opengameart.org/content/lpc-character-bases", "https://github.com/ElizaWy/LPC", "https://opengameart.org/content/lpc-hair", "https://opengameart.org/content/lpc-gentleman", "http://opengameart.org/content/lpc-clothing-updates", "https://opengameart.org/content/lpc-expanded-socks-shoes"],
+    licenses: [
+      {
+        name: "OGA-BY 3.0",
+        url: "https://static.opengameart.org/OGA-BY-3.0.txt",
+      },
+      {
+        name: "CC-BY-SA 3.0",
+        url: "https://creativecommons.org/licenses/by-sa/3.0/",
+      },
+      { name: "GPL 3.0", url: "https://www.gnu.org/licenses/gpl-3.0.en.html" },
+      { name: "CC0", url: "http://creativecommons.org/publicdomain/zero/1.0/" },
+    ],
+    authors: [
+      "Benjamin K. Smith (BenCreating)",
+      "bluecarrot16",
+      "TheraHedwig",
+      "Evert",
+      "MuffinElZangano",
+      "Durrani",
+      "Pierre Vigier (pvigier)",
+      "ElizaWy",
+      "Matthew Krohn (makrohn)",
+      "Johannes Sjölund (wulax)",
+      "Stephen Challener (Redshrike)",
+      "thecilekli",
+      "Thane Brimhall (pennomi)",
+      "laetissima",
+      "JaidynReiman",
+      "Joe White",
+    ],
+    links: [
+      "https://opengameart.org/content/liberated-pixel-cup-lpc-base-assets-sprites-map-tiles",
+      "https://opengameart.org/content/lpc-character-bases",
+      "https://github.com/ElizaWy/LPC",
+      "https://opengameart.org/content/lpc-hair",
+      "https://opengameart.org/content/lpc-gentleman",
+      "http://opengameart.org/content/lpc-clothing-updates",
+      "https://opengameart.org/content/lpc-expanded-socks-shoes",
+    ],
   },
-  // prettier-ignore
   botAvatar: {
-    type: "avatar" as const, // <-- 型を明示的に指定
+    type: "avatar" as const,
     name: "Botアバター",
-    licenses: [ { name: "OGA-BY 3.0", url: "https://static.opengameart.org/OGA-BY-3.0.txt" }, { name: "CC-BY-SA 3.0", url: "https://creativecommons.org/licenses/by-sa/3.0/" }, { name: "GPL 3.0", url: "https://www.gnu.org/licenses/gpl-3.0.en.html" }, ],
-    authors: ["bluecarrot16", "Evert", "TheraHedwig", "Benjamin K. Smith (BenCreating)", "MuffinElZangano", "Durrani", "Pierre Vigier (pvigier)", "Eliza Wyatt (ElizaWy)", "Matthew Krohn (makrohn)", "Johannes Sjölund (wulax)", "Stephen Challener (Redshrike)", "JaidynReiman", "Manuel Riecke (MrBeast)", "Joe White", "Thane Brimhall (pennomi)", "laetissima"],
-    links: ["https://opengameart.org/content/liberated-pixel-cup-lpc-base-assets-sprites-map-tiles", "https://opengameart.org/content/lpc-character-bases", "https://github.com/ElizaWy/LPC", "https://opengameart.org/content/lpc-expanded-hair", "https://opengameart.org/content/lpc-gentleman", "http://opengameart.org/content/lpc-clothing-updates", "https://opengameart.org/content/lpc-expanded-pants"],
+    licenses: [
+      {
+        name: "OGA-BY 3.0",
+        url: "https://static.opengameart.org/OGA-BY-3.0.txt",
+      },
+      {
+        name: "CC-BY-SA 3.0",
+        url: "https://creativecommons.org/licenses/by-sa/3.0/",
+      },
+      { name: "GPL 3.0", url: "https://www.gnu.org/licenses/gpl-3.0.en.html" },
+    ],
+    authors: [
+      "bluecarrot16",
+      "Evert",
+      "TheraHedwig",
+      "Benjamin K. Smith (BenCreating)",
+      "MuffinElZangano",
+      "Durrani",
+      "Pierre Vigier (pvigier)",
+      "Eliza Wyatt (ElizaWy)",
+      "Matthew Krohn (makrohn)",
+      "Johannes Sjölund (wulax)",
+      "Stephen Challener (Redshrike)",
+      "JaidynReiman",
+      "Manuel Riecke (MrBeast)",
+      "Joe White",
+      "Thane Brimhall (pennomi)",
+      "laetissima",
+    ],
+    links: [
+      "https://opengameart.org/content/liberated-pixel-cup-lpc-base-assets-sprites-map-tiles",
+      "https://opengameart.org/content/lpc-character-bases",
+      "https://github.com/ElizaWy/LPC",
+      "https://opengameart.org/content/lpc-expanded-hair",
+      "https://opengameart.org/content/lpc-gentleman",
+      "http://opengameart.org/content/lpc-clothing-updates",
+      "https://opengameart.org/content/lpc-expanded-pants",
+    ],
   },
 };
 
-// --- コンポーネント ---
 const LicenseInfo: React.FC<LicenseInfoProps> = ({ onBack }) => {
   const assetCredits: {
     assetName: string;
