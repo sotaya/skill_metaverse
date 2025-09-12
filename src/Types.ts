@@ -30,7 +30,7 @@ export interface LogEntry {
   message: string;
   userId?: string;
   userName?: string;
-  sharedLinks?: string[]; // Add this line
+  sharedLinks?: string[]; 
 }
 
 export interface ChatMessage {
