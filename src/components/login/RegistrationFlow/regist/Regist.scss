@@ -1,10 +1,144 @@
+body,
+html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+.split-container {
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+}
+.blue-panel {
+  flex: 1;
+  background: #00526c;
+
+  position: relative;
+  overflow: hidden;
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    background-color: #ffffff;
+
+    top: 50%;
+    left: 50%;
+
+    transform-origin: center center;
+  }
+
+  &::before {
+    width: 200%;
+    height: 60px;
+
+    transform: translate(-60%, -50%) rotate(65deg);
+  }
+
+  &::after {
+    width: 200%;
+    height: 60px;
+    transform: translate(-50%, -560%) rotate(-25deg);
+  }
+}
+
+.App-Name {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-40%, -350%) rotate(-25deg);
+
+  h1 {
+    color: #fff;
+    font-size: 4rem;
+  }
+}
+
+.regist-Title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-10%, -100%);
+  .Title1 {
+    color: #fff;
+    font-size: 2rem;
+  }
+
+  .Title2 {
+    color: #fff;
+    font-size: 1.9rem;
+    margin-top: 30px;
+    margin-left: 30px;
+  }
+}
+
 .regist-bg {
+  flex: 1;
   min-height: 100vh;
   background: #f4f6fa;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 1rem;
+}
+
+.regist-stepper {
+  display: flex;
+  width: 100%;
+  max-width: 400px;
+  list-style-type: none;
+  gap: 1.5rem;
+
+  .step-item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    min-width: 0;
+  }
+
+  .step-item:not(:first-child)::before {
+    content: '';
+    position: absolute;
+    top: 18px;
+    right: 50%;
+    width: 132%;
+    height: 4px;
+    background-color: #e0e0e0;
+    z-index: 0;
+  }
+
+  .step-number {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: #e0e0e0;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    z-index: 1;
+    transition: background-color 0.3s ease;
+  }
+
+  .step-label {
+    margin-top: 8px;
+    font-size: 0.8rem;
+    color: #888;
+    white-space: nowrap;
+  }
+
+  .step-item.is-active .step-number {
+    background-color: #007bff;
+  }
+
+  .step-item.is-active .step-label {
+    color: #333;
+    font-weight: bold;
+  }
 }
 
 .regist-card {
@@ -207,5 +341,15 @@
 
   &:hover {
     background: #1565c0;
+  }
+}
+
+@media (max-width: 900px) {
+  .split-container {
+    flex-direction: column;
+  }
+
+  .blue-panel {
+    display: none;
   }
 }
