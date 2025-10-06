@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { doc, getDoc } from "firebase/firestore";
-import { db } from "../../firebase";
-import { AvatarList } from "../graphics/avatar/AvatarList";
-import { TILE_SIZE } from "../graphics/constants/game-world";
-import { Stage, Sprite } from "@pixi/react";
-import { Rectangle, Texture } from "pixi.js";
-import "./UserProfile.scss";
+import React, { useEffect, useState } from 'react';
+import { doc, getDoc } from 'firebase/firestore';
+import { db } from '../../firebase';
+import { AvatarList } from '../graphics/avatar/AvatarList';
+import { TILE_SIZE } from '../graphics/constants/game-world';
+import { Stage, Sprite } from '@pixi/react';
+import { Rectangle, Texture } from 'pixi.js';
+import './UserProfile.scss';
 
 interface UserProfileProps {
   userId: string;
@@ -22,7 +22,7 @@ const UserProfile = ({ userId, onBack }: UserProfileProps) => {
   useEffect(() => {
     const fetchUserData = async () => {
       setLoading(true);
-      const userDoc = await getDoc(doc(db, "users", userId));
+      const userDoc = await getDoc(doc(db, 'users', userId));
       if (userDoc.exists()) {
         setUserData(userDoc.data());
       }
@@ -83,7 +83,7 @@ const UserProfile = ({ userId, onBack }: UserProfileProps) => {
         </div>
         <div className="profile-section">
           <h3>自己紹介</h3>
-          <p>{userData.content || "自己紹介が設定されていません。"}</p>
+          <p>{userData.content || '自己紹介が設定されていません。'}</p>
         </div>
         <div className="profile-section">
           <h3>スキル</h3>

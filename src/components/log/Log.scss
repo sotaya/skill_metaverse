@@ -1,29 +1,38 @@
 .log-container {
   padding: 1.5rem 1rem;
-  background: #f8fafc;
+  background: #00526c;
   border-radius: 16px;
   box-shadow: 0 2px 12px rgba(60, 80, 120, 0.08);
-  min-width: 320px;
-  max-width: 400px;
+  max-width: 100%;
+  margin: 10px;
+  height: calc(100vh - 20px);
+  display: flex;
+  flex-direction: column;
   h3 {
     margin-top: 0;
-    margin-bottom: 1.2rem;
+    margin-bottom: 1rem;
     font-size: 1.3rem;
     font-weight: bold;
-    color: #2c3e50;
+    color: #fff;
     letter-spacing: 0.02em;
     text-align: center;
+  }
+  h4 {
+    font-size: 0.6rem;
+    margin-bottom: 1.2rem;
+    color: #c5c5c5;
   }
 }
 
 .log-messages {
-  height: 260px;
+  flex: 1;
   overflow-y: auto;
-  border: 1px solid #e0e0e0;
+  border: 1px solid #00526c;
   padding: 0.75rem;
-  background: #fff;
+  background: #00526c;
   border-radius: 10px;
   box-shadow: 0 1px 4px rgba(60, 80, 120, 0.04);
+  min-height: 0;
 }
 
 .log-entry {
@@ -33,11 +42,33 @@
   margin-bottom: 0.7rem;
   padding: 0.5rem 0.5rem 0.5rem 0.7rem;
   border-radius: 8px;
-  transition: background 0.2s;
-  background: #f3f7fa;
+  background: #00526c;
 
-  &:hover {
-    background: #e6f0fa;
+  .user-info-section {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0.5rem;
+  }
+
+  .user-avatar-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+  }
+
+  .user-details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .user-name-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    .user-name {
+      color: #ffffff;
+    }
   }
 
   p {
@@ -51,10 +82,11 @@
   }
 
   .log-timestamp {
-    color: #7b8ca7;
+    color: #ffffff;
     margin-right: 10px;
     font-size: 0.92em;
     font-weight: 400;
+    width: 100%;
   }
 
   .log-entry-main {
@@ -100,15 +132,17 @@
 }
 
 .follow-button {
-  margin-left: 16px;
-  padding: 4px 12px;
-  font-size: 13px;
+  margin-left: 0;
+  padding: 2px 8px;
+  font-size: 11px;
   white-space: nowrap;
   flex-shrink: 0;
+  min-width: 60px;
+  text-align: center;
   background: linear-gradient(90deg, #3ea8ff 60%, #6ec6ff 100%);
   color: #fff;
   border: none;
-  border-radius: 16px;
+  border-radius: 12px;
   cursor: pointer;
   font-weight: bold;
   box-shadow: 0 1px 4px rgba(60, 80, 120, 0.08);
@@ -124,5 +158,17 @@
     color: #f4f4f4;
     cursor: not-allowed;
     box-shadow: none;
+  }
+}
+
+.chat-bubble-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 8px;
+  color: #ffffff;
+
+  .MuiSvgIcon-root {
+    font-size: 1.5rem;
   }
 }

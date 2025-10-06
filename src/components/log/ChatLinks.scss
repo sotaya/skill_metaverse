@@ -1,0 +1,131 @@
+.chat-links-container {
+  padding: 1.5rem 1rem;
+  background: #00526c;
+  border-radius: 16px;
+  box-shadow: 0 2px 12px rgba(60, 80, 120, 0.08);
+  max-width: 100%;
+  margin: 10px;
+  height: calc(100vh - 20px);
+  display: flex;
+  flex-direction: column;
+}
+
+.chat-links-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.5rem;
+
+  .back-button {
+    background: none;
+    border: none;
+    color: #ffffff;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 8px;
+    margin-right: 12px;
+    transition: background-color 0.2s;
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .MuiSvgIcon-root {
+      font-size: 1.5rem;
+    }
+  }
+
+  h3 {
+    margin: 0;
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #fff;
+    letter-spacing: 0.02em;
+  }
+}
+
+.user-info-header {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+
+  .user-avatar {
+    margin-right: 1rem;
+  }
+
+  .user-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+
+    .user-name {
+      font-size: 1.1rem;
+      font-weight: bold;
+      color: #ffffff;
+    }
+
+    .timestamp {
+      font-size: 0.9rem;
+      color: #c5c5c5;
+    }
+  }
+}
+
+.links-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0.75rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+
+  .links-list {
+    h4 {
+      margin: 0 0 1rem 0;
+      font-size: 1.1rem;
+      font-weight: bold;
+      color: #ffffff;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+
+      .link-item {
+        margin-bottom: 0.75rem;
+        padding: 0.75rem;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 8px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        transition: background-color 0.2s;
+
+        .link-url {
+          color: #C5C5C5;
+          text-decoration: none;
+          word-break: break-all;
+          font-size: 0.9rem;
+          line-height: 1.4;
+        }
+      }
+    }
+  }
+
+  .no-links {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 200px;
+
+    p {
+      color: #c5c5c5;
+      font-size: 1rem;
+      text-align: center;
+      margin: 0;
+    }
+  }
+}
+
