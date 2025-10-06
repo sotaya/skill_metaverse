@@ -25,7 +25,7 @@
   width: 400px;
   max-width: 100%;
   height: 100%;
-  background-color: #ffffff;
+  background-color: #00526C;
   color: #333333;
   transform: translateX(100%);
   transition: transform 0.3s ease-in-out;
@@ -50,14 +50,14 @@
   .close-button {
     background: none;
     border: none;
-    color: #555555;
+    color: #ffffff;
     cursor: pointer;
     padding: 5px;
     display: flex;
     align-items: center;
 
     &:hover {
-      color: #007bff;
+      color: #EA7070;
     }
   }
 
@@ -89,7 +89,7 @@
       margin: 10px 0 5px;
       font-size: 1.8em;
       font-weight: 600;
-      color: #222222;
+      color: #ffffff;
     }
 
     .profile-status {
@@ -107,7 +107,7 @@
     button {
       background: none;
       border: none;
-      color: #333333;
+      color: #000000;
       cursor: pointer;
       font-size: 1em;
       display: flex;
@@ -122,15 +122,15 @@
       }
 
       span {
-        color: #888888;
+        color: #ffffff;
         font-size: 1em;
         transition: color 0.2s;
       }
 
       &:hover {
-        color: #007bff;
+        color: #365CDB;
         span {
-          color: #007bff;
+          color: #365CDB;
         }
       }
     }
@@ -138,8 +138,8 @@
 
   .profile-edit-button {
     background-color: transparent;
-    color: #007bff;
-    border: 1px solid #007bff;
+    color: #ffffff;
+    border: 1px solid #ffffff;
     padding: 8px 20px;
     border-radius: 20px;
     cursor: pointer;
@@ -148,7 +148,7 @@
     transition: background-color 0.2s, color 0.2s;
 
     &:hover {
-      background-color: #007bff;
+      background-color: #365CDB;
       color: #ffffff;
     }
   }
@@ -161,13 +161,13 @@
     h3 {
       margin-bottom: 15px;
       font-size: 1.2em;
-      color: #555555;
+      color: #ffffff;
       font-weight: 500;
       border: none;
     }
 
     p {
-      color: #444444;
+      color: #000000;
       white-space: pre-wrap;
       word-wrap: break-word;
       line-height: 1.6;
@@ -181,7 +181,7 @@
 
     .skill-tag {
       background-color: #f0f0f0;
-      color: #555555;
+      color: #000000;
       padding: 6px 12px;
       border-radius: 5px;
       font-size: 0.95em;

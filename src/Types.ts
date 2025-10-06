@@ -1,4 +1,4 @@
-import { Timestamp } from "firebase/firestore";
+import { Timestamp } from 'firebase/firestore';
 
 export interface InitialUserState {
   user: null | {
@@ -46,7 +46,7 @@ export interface ParticipantData {
   position: { x: number; y: number };
   userName: string;
   avatarId: number;
-  direction: "UP" | "DOWN" | "LEFT" | "RIGHT" | null;
+  direction: 'UP' | 'DOWN' | 'LEFT' | 'RIGHT' | null;
   message?: string;
   chattingWith?: string | null;
   isTyping?: boolean;
