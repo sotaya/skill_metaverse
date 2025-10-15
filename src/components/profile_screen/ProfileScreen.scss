@@ -25,7 +25,7 @@
   width: 400px;
   max-width: 100%;
   height: 100%;
-  background-color: #00526C;
+  background-color: #00526c;
   color: #333333;
   transform: translateX(100%);
   transition: transform 0.3s ease-in-out;
@@ -57,7 +57,7 @@
     align-items: center;
 
     &:hover {
-      color: #EA7070;
+      color: #ea7070;
     }
   }
 
@@ -126,13 +126,6 @@
         font-size: 1em;
         transition: color 0.2s;
       }
-
-      &:hover {
-        color: #365CDB;
-        span {
-          color: #365CDB;
-        }
-      }
     }
   }
 
@@ -148,7 +141,7 @@
     transition: background-color 0.2s, color 0.2s;
 
     &:hover {
-      background-color: #365CDB;
+      background-color: #5882f5;
       color: #ffffff;
     }
   }
@@ -171,6 +164,15 @@
       white-space: pre-wrap;
       word-wrap: break-word;
       line-height: 1.6;
+    }
+
+    .self-introduction{
+      background-color: #f0f0f0;
+      color: #000000;
+      height:200px;
+      overflow-y: auto;
+      padding: 6px 12px;
+      border-radius: 5px;
     }
   }
 
