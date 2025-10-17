@@ -1,46 +1,72 @@
-# Getting Started with Create React App
+Crosk - リアルタイムコミュニケーションメタバース
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Crosk は、ユーザーがアバターを操作して仮想空間を自由に移動し、他のユーザーや AI ボットとリアルタイムで交流できる 2D メタバースアプリケーションです。プログラミングスキルを登録し、同じ興味を持つ他のユーザーと繋がることを目的としています。
 
-## Available Scripts
+主な機能
 
-In the project directory, you can run:
+リアルタイムなアバター操作: キーボード操作で仮想空間内を自由に移動できます。
 
-### `npm start`
+リアルタイムチャット: 他のユーザーや AI ボットと近づくことで、チャットを開始できます。
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+プロフィールとスキルの登録: 自身のプロフィールやプログラミングスキルを登録・編集できます。
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+フォロー・フォロワー機能: 気になるユーザーをフォローし、繋がりを作ることができます。
 
-### `npm test`
+ライセンス情報の表示: アプリ内で使用されているオープンソースアセットのクレジット情報を確認できます。
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+技術スタック
 
-### `npm run build`
+フロントエンド: React, TypeScript, Redux Toolkit, PixiJS
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+バックエンド / データベース: Firebase (Authentication, Firestore Realtime Database)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+スタイリング: Sass (SCSS)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+セットアップと実行方法
 
-### `npm run eject`
+リポジトリをクローンします:
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+git clone [https://github.com/your-username/skill_metaverse.git](https://github.com/your-username/skill_metaverse.git)
+cd skill_metaverse
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+依存関係をインストールします:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+npm install
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Firebase の設定:
+プロジェクトのルートに.env ファイルを作成し、お使いの Firebase プロジェクトの設定情報を記述してください。
 
-## Learn More
+REACT_APP_FIREBASE_API_KEY="YOUR_API_KEY"
+REACT_APP_FIREBASE_AUTH_DOMAIN="YOUR_AUTH_DOMAIN"
+REACT_APP_FIREBASE_PROJECT_ID="YOUR_PROJECT_ID"
+REACT_APP_FIREBASE_STORAGE_BUCKET="YOUR_STORAGE_BUCKET"
+REACT_APP_FIREBASE_MESSAGING_SENDER_ID="YOUR_MESSAGING_SENDER_ID"
+REACT_APP_FIREBASE_APP_ID="YOUR_APP_ID"
+REACT_APP_GEMINI_API_KEY="YOUR_GEMINI_API_KEY"
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+開発サーバーを起動します:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+npm start
+
+ブラウザで http://localhost:3000 を開きます。
+
+ライセンス
+
+【重要】
+このプロジェクトは GNU General Public License v3.0 の下で公開されています。
+
+これは、プロジェクト内で使用されているアバターなどのグラフィックアセットに、GPL や CC-BY-SA といった「コピーレフト」の性質を持つライセンスが含まれているためです。
+
+このプロジェクトのソースコードをフォークして利用したり、派生物を作成したりする場合、あなたのプロジェクトも同様に GPL-3.0 ライセンスの下でソースコードを公開する必要があります。
+
+詳細については、LICENSE ファイルおよびアプリケーション内のライセンス情報ページをご参照ください。
+
+クレジット
+
+このプロジェクトは、以下のような素晴らしいオープンソースのアセットを利用して作成されています。
+
+2D 空間タイルデザイン: OpenGameArt.org
+
+アバター作成: Universal LPC Sprite Sheet Character Generator
+
+各アセットの詳細なクレジットは、アプリケーション内の「設定」→「ライセンス情報」からご確認いただけます。クリエイターの皆様に心より感謝申し上げます。
