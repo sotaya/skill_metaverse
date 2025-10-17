@@ -1,21 +1,21 @@
-import React from "react";
-import { useAppSelector } from "../../app/hooks";
-import { AvatarList } from "../graphics/avatar/AvatarList";
-import { TILE_SIZE } from "../graphics/constants/game-world";
-import { Stage, Sprite } from "@pixi/react";
-import { Rectangle, Texture } from "pixi.js";
-import { useNavigate } from "react-router-dom";
-import { db } from "../../firebase";
-import { doc, setDoc } from "firebase/firestore";
-import UserList from "./UserList";
-import UserProfile from "./UserProfile";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import CloseIcon from "@mui/icons-material/Close";
-import "./ProfileScreen.scss";
+import React from 'react';
+import { useAppSelector } from '../../app/hooks';
+import { AvatarList } from '../graphics/avatar/AvatarList';
+import { TILE_SIZE } from '../graphics/constants/game-world';
+import { Stage, Sprite } from '@pixi/react';
+import { Rectangle, Texture } from 'pixi.js';
+import { useNavigate } from 'react-router-dom';
+import { db } from '../../firebase';
+import { doc, setDoc } from 'firebase/firestore';
+import UserList from './UserList';
+import UserProfile from './UserProfile';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import CloseIcon from '@mui/icons-material/Close';
+import './ProfileScreen.scss';
 
 type ProfileView = {
   isOpen: boolean;
-  view: "main" | "following" | "followers" | "userProfile";
+  view: 'main' | 'following' | 'followers' | 'userProfile';
   data?: any;
 };
 
@@ -32,7 +32,7 @@ const ProfileScreen = ({ profileView, setProfileView }: ProfileScreenProps) => {
   const navigate = useNavigate();
 
   const handleClose = () => {
-    setProfileView({ isOpen: false, view: "main", data: null });
+    setProfileView({ isOpen: false, view: 'main', data: null });
   };
 
   const handleEditProfile = async () => {
@@ -40,9 +40,9 @@ const ProfileScreen = ({ profileView, setProfileView }: ProfileScreenProps) => {
       try {
         const positionDocRef = doc(
           db,
-          "rooms",
-          "default-lobby",
-          "participants",
+          'rooms',
+          'default-lobby',
+          'participants',
           user.uid
         );
         await setDoc(
@@ -51,15 +51,15 @@ const ProfileScreen = ({ profileView, setProfileView }: ProfileScreenProps) => {
           { merge: true }
         );
       } catch (error) {
-        console.error("Failed to reset user position:", error);
+        console.error('Failed to reset user position:', error);
       }
     }
-    navigate("/profile/edit");
+    navigate('/profile/edit');
   };
 
   const renderContent = () => {
     switch (profileView.view) {
-      case "following":
+      case 'following':
         return (
           <UserList
             userIds={user?.following || []}
@@ -67,13 +67,13 @@ const ProfileScreen = ({ profileView, setProfileView }: ProfileScreenProps) => {
             onUserClick={(userId) =>
               setProfileView({
                 isOpen: true,
-                view: "userProfile",
+                view: 'userProfile',
                 data: { userId },
               })
             }
           />
         );
-      case "followers":
+      case 'followers':
         return (
           <UserList
             userIds={user?.followers || []}
@@ -81,20 +81,20 @@ const ProfileScreen = ({ profileView, setProfileView }: ProfileScreenProps) => {
             onUserClick={(userId) =>
               setProfileView({
                 isOpen: true,
-                view: "userProfile",
+                view: 'userProfile',
                 data: { userId },
               })
             }
           />
         );
-      case "userProfile":
+      case 'userProfile':
         return (
           <UserProfile
             userId={profileView.data.userId}
-            onBack={() => setProfileView({ isOpen: true, view: "main" })}
+            onBack={() => setProfileView({ isOpen: true, view: 'main' })}
           />
         );
-      case "main":
+      case 'main':
       default:
         if (!user) return null;
         return (
@@ -126,7 +126,7 @@ const ProfileScreen = ({ profileView, setProfileView }: ProfileScreenProps) => {
               <div className="profile-follow-stats">
                 <button
                   onClick={() =>
-                    setProfileView({ isOpen: true, view: "following" })
+                    setProfileView({ isOpen: true, view: 'following' })
                   }
                 >
                   <strong>{user.following?.length || 0}</strong>
@@ -134,7 +134,7 @@ const ProfileScreen = ({ profileView, setProfileView }: ProfileScreenProps) => {
                 </button>
                 <button
                   onClick={() =>
-                    setProfileView({ isOpen: true, view: "followers" })
+                    setProfileView({ isOpen: true, view: 'followers' })
                   }
                 >
                   <strong>{user.followers?.length || 0}</strong>
@@ -152,7 +152,9 @@ const ProfileScreen = ({ profileView, setProfileView }: ProfileScreenProps) => {
             <div className="profile-body">
               <div className="profile-section">
                 <h3>自己紹介</h3>
-                <p>{user.content || "自己紹介が設定されていません。"}</p>
+                <div className="self-introduction">
+                  <p>{user.content || '自己紹介が設定されていません。'}</p>
+                </div>
               </div>
               <div className="profile-section">
                 <h3>スキル</h3>
@@ -176,14 +178,14 @@ const ProfileScreen = ({ profileView, setProfileView }: ProfileScreenProps) => {
 
   return (
     <div
-      className={`profile-screen-overlay ${profileView.isOpen ? "open" : ""}`}
+      className={`profile-screen-overlay ${profileView.isOpen ? 'open' : ''}`}
     >
       <div className="profile-screen-panel">
         <div className="profile-screen-header">
-          {profileView.view !== "main" && (
+          {profileView.view !== 'main' && (
             <button
               className="back-button"
-              onClick={() => setProfileView({ isOpen: true, view: "main" })}
+              onClick={() => setProfileView({ isOpen: true, view: 'main' })}
               aria-label="戻る"
             >
               <ArrowBackIcon />
