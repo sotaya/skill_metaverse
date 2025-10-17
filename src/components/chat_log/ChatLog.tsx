@@ -1,4 +1,10 @@
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import { Stage, Sprite } from "@pixi/react";
 import { Rectangle, Texture } from "pixi.js";
 import { Timestamp } from "firebase/firestore";
@@ -27,6 +33,15 @@ const ChatLog: React.FC<ChatLogProps> = ({
   const [isConfirmingEnd, setIsConfirmingEnd] = useState(false);
   const logContainerRef = useRef<HTMLDivElement>(null);
   const lastUserMessageTimestamp = useRef<Date | null>(null);
+
+  const [isDragging, setIsDragging] = useState(false);
+  const [position, setPosition] = useState({ right: 20, bottom: 20 });
+  const dragStartInfo = useRef({
+    startX: 0,
+    startY: 0,
+    initialRight: 0,
+    initialBottom: 0,
+  });
 
   const getAvatarTextureUrl = (uid: string) => {
     if (uid === "Bot") {
@@ -142,9 +157,59 @@ const ChatLog: React.FC<ChatLogProps> = ({
   const showSeparateIndicator =
     isPartnerTyping && (!lastMessage || lastMessage.uid === userId);
 
+  const handleMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
+    setIsDragging(true);
+    dragStartInfo.current = {
+      startX: e.clientX,
+      startY: e.clientY,
+      initialRight: position.right,
+      initialBottom: position.bottom,
+    };
+    e.preventDefault();
+  };
+
+  const handleMouseMove = useCallback(
+    (e: MouseEvent) => {
+      // isDragging state is captured in the closure, so we use a ref check inside the listener
+      if (dragStartInfo.current) {
+        const dx = e.clientX - dragStartInfo.current.startX;
+        const dy = e.clientY - dragStartInfo.current.startY;
+        setPosition({
+          right: dragStartInfo.current.initialRight - dx,
+          bottom: dragStartInfo.current.initialBottom - dy,
+        });
+      }
+    },
+    [] // No dependencies needed as we use refs inside
+  );
+
+  const handleMouseUp = useCallback(() => {
+    setIsDragging(false);
+  }, []);
+
+  useEffect(() => {
+    if (isDragging) {
+      document.addEventListener("mousemove", handleMouseMove);
+      document.addEventListener("mouseup", handleMouseUp, { once: true });
+    }
+
+    return () => {
+      document.removeEventListener("mousemove", handleMouseMove);
+      document.removeEventListener("mouseup", handleMouseUp);
+    };
+  }, [isDragging, handleMouseMove, handleMouseUp]);
+
   return (
-    <div className="chat-log-container">
-      <div className="chat-log-header">
+    <div
+      className={`chat-log-container ${isDragging ? "dragging" : ""}`}
+      style={{
+        right: `${position.right}px`,
+        bottom: `${position.bottom}px`,
+        left: "auto",
+        top: "auto",
+      }}
+    >
+      <div className="chat-log-header" onMouseDown={handleMouseDown}>
         <h3>チャットログ</h3>
         <button
           className={`end-chat-button ${isConfirmingEnd ? "confirming" : ""}`}
