@@ -93,9 +93,13 @@
     }
 
     .profile-status {
+      font-weight: 600;
       margin: 0;
       font-size: 1em;
-      color: #777777;
+      color: #ffffff;
+      border-bottom: 1px solid #ffffff;
+      padding-bottom: 3px;
+
     }
   }
 
@@ -132,6 +136,7 @@
   .profile-edit-button {
     background-color: transparent;
     color: #ffffff;
+    box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.2);
     border: 1px solid #ffffff;
     padding: 8px 20px;
     border-radius: 20px;
