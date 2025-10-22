@@ -6,11 +6,18 @@
   }
 }
 .user-list-loading,
-.user-list-container p {
+.user-list-container{
+  p {
   text-align: center;
-  color: #888;
+  color:#ffffff;
   margin-top: 2rem;
 }
+h3{
+  color:#ffffff;
+  margin-top: 2rem;
+}
+}
+
 .user-list {
   list-style: none;
   padding: 0;
@@ -34,6 +41,7 @@
     }
     span {
       font-weight: 500;
+      color:#ffffff
     }
   }
 }
