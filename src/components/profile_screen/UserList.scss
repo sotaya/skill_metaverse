@@ -5,17 +5,23 @@
     color: #2d3a4b;
   }
 }
-.user-list-loading,
-.user-list-container{
+
+.user-list-container {
   p {
+    text-align: center;
+    color: #ffffff;
+    margin-top: 2rem;
+  }
+  h3 {
+    color: #ffffff;
+    margin-top: 2rem;
+  }
+}
+
+.user-list-loading {
   text-align: center;
-  color:#ffffff;
+  color: #ffffff;
   margin-top: 2rem;
-}
-h3{
-  color:#ffffff;
-  margin-top: 2rem;
-}
 }
 
 .user-list {
@@ -29,9 +35,7 @@ h3{
     border-bottom: 1px solid #e0e0e0;
     cursor: pointer;
     transition: background-color 0.2s;
-    &:hover {
-      background-color: #fff;
-    }
+
     .user-list-avatar {
       width: 40px;
       height: 40px;
@@ -41,7 +45,7 @@ h3{
     }
     span {
       font-weight: 500;
-      color:#ffffff
+      color: #ffffff;
     }
   }
 }
