@@ -1,4 +1,4 @@
-# <img src="./public/logo.png" alt="Crosk logo" height="40"> Crosk- リアルタイムコミュニケーションメタバース
+# <img src="./public/logo.png" alt="Crosk logo" height="25"> Crosk- リアルタイムコミュニケーションメタバース
 
 Crosk は、ユーザーがアバターを操作して仮想空間を自由に移動し、他のユーザーや AI ボットとリアルタイムで交流できる 2D メタバースアプリケーションです。プログラミングスキルを登録し、同じ興味を持つ他のユーザーと繋がることを目的としています。
 
