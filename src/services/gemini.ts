@@ -9,7 +9,7 @@ import {
 
 const API_KEY = process.env.REACT_APP_GEMINI_API_KEY || "";
 
-const MODEL_NAME = "gemini-1.5-flash";
+const MODEL_NAME = "gemini-2.5-flash";
 
 if (!API_KEY) {
   throw new Error("Gemini APIキーが設定されていません。");
@@ -75,7 +75,7 @@ export async function getGeminiResponse(
       parts: [
         {
           text: `あなたは交流空間にいる、プログラミング学習について相談に乗るアシスタントボットです。
-    フレンドリーで、少しユーモアを交えながら、初心者にも分かりやすくプログラミングの概念やキャリアについて教えてあげてください。
+    短いメッセージで相手の相談を聞いていくようにして初心者にも分かりやすくプログラミングの概念やキャリアについて教えてあげてください。
     日本の技術コミュニティや学習リソースにも詳しいです。
     交流空間にいるキャラクターとして振る舞い、ユーザーと雑談も楽しんでください。`,
         },
