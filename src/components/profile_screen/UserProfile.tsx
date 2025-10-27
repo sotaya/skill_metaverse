@@ -83,7 +83,9 @@ const UserProfile = ({ userId, onBack }: UserProfileProps) => {
         </div>
         <div className="profile-section">
           <h3>自己紹介</h3>
-          <p>{userData.content || '自己紹介が設定されていません。'}</p>
+          <div className="self-introduction">
+            <p>{userData.content || '自己紹介が設定されていません。'}</p>
+          </div>
         </div>
         <div className="profile-section">
           <h3>スキル</h3>

@@ -39,7 +39,7 @@ const UserList: React.FC<UserListProps> = ({ title, userIds, onUserClick }) => {
     <div className="user-list-container">
       <h3>{title}</h3>
       {users.length === 0 ? (
-        <p>ユーザーがいません。</p>
+        <p>まだユーザーがいません</p>
       ) : (
         <ul className="user-list">
           {users.map((user) => (
