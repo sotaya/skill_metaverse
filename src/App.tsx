@@ -4,24 +4,24 @@ import React, {
   useCallback,
   useMemo,
   useRef,
-} from "react";
-import "./App.scss";
+} from 'react';
+import './App.scss';
 import {
   BrowserRouter as Router,
   Routes,
   Route,
   Navigate,
-} from "react-router-dom";
-import Sidebar from "./components/sidebar/Sidebar";
-import { Experience } from "./components/graphics/experience/Experience";
-import ProfileEdit from "./components/profile_edit/ProfileEdit";
-import Login from "./components/login/Login";
-import { login, logout } from "./features/userSlice";
-import { useAppDispatch, useAppSelector } from "./app/hooks";
-import { auth, db } from "./firebase";
-import { ErrorBoundary } from "react-error-boundary";
-import { ErrorFallBack } from "./utils/ErrorFallBack";
-import RegistrationFlow from "./components/login/RegistrationFlow/RegistrationFlow";
+} from 'react-router-dom';
+import Sidebar from './components/sidebar/Sidebar';
+import { Experience } from './components/graphics/experience/Experience';
+import ProfileEdit from './components/profile_edit/ProfileEdit';
+import Login from './components/login/Login';
+import { login, logout } from './features/userSlice';
+import { useAppDispatch, useAppSelector } from './app/hooks';
+import { auth, db } from './firebase';
+import { ErrorBoundary } from 'react-error-boundary';
+import { ErrorFallBack } from './utils/ErrorFallBack';
+import RegistrationFlow from './components/login/RegistrationFlow/RegistrationFlow';
 import {
   collection,
   doc,
@@ -35,21 +35,21 @@ import {
   QuerySnapshot,
   QueryDocumentSnapshot,
   Timestamp,
-} from "firebase/firestore";
-import { getAuth, signOut } from "firebase/auth";
-import { LogEntry, ParticipantData } from "./Types";
-import ChatLog from "./components/chat_log/ChatLog";
+} from 'firebase/firestore';
+import { getAuth, signOut } from 'firebase/auth';
+import { LogEntry, ParticipantData } from './Types';
+import ChatLog from './components/chat_log/ChatLog';
 import {
   TILE_SIZE,
   DEFAULT_POS_X,
   DEFAULT_POS_Y,
-} from "./components/graphics/constants/game-world";
-import { getBotResponse } from "./components/graphics/bot/BotLogic";
-import ProfileScreen from "./components/profile_screen/ProfileScreen";
+} from './components/graphics/constants/game-world';
+import { getBotResponse } from './components/graphics/bot/BotLogic';
+import ProfileScreen from './components/profile_screen/ProfileScreen';
 
 type ProfileView = {
   isOpen: boolean;
-  view: "main" | "following" | "followers" | "userProfile";
+  view: 'main' | 'following' | 'followers' | 'userProfile';
   data?: any;
 };
 
@@ -70,7 +70,7 @@ function App() {
   );
   const [profileView, setProfileView] = useState<ProfileView>({
     isOpen: false,
-    view: "main",
+    view: 'main',
     data: null,
   });
 
@@ -79,9 +79,9 @@ function App() {
   const [timeRestriction, setTimeRestriction] =
     useState<TimeRestriction | null>(null);
   const [isAppActive, setIsAppActive] = useState(true);
-  const [restrictionMessage, setRestrictionMessage] = useState("");
+  const [restrictionMessage, setRestrictionMessage] = useState('');
 
-  const userId = user?.uid || "";
+  const userId = user?.uid || '';
 
   const botPos = useMemo(() => ({ x: TILE_SIZE * 5, y: TILE_SIZE * 6 }), []);
 
@@ -94,7 +94,7 @@ function App() {
 
   const isChatActive = useMemo(() => {
     if (!me || !myChatPartnerId) return false;
-    if (myChatPartnerId === "Bot" || chatPartner?.chattingWith === userId) {
+    if (myChatPartnerId === 'Bot' || chatPartner?.chattingWith === userId) {
       return true;
     }
     return false;
@@ -106,7 +106,7 @@ function App() {
     if (!myPos) return [];
     return Object.entries(allPositions)
       .filter(([uid, data]) => {
-        if (uid === userId || uid === "Bot" || !data.position) return false;
+        if (uid === userId || uid === 'Bot' || !data.position) return false;
         const distance =
           Math.abs(myPos.x - data.position.x) +
           Math.abs(myPos.y - data.position.y);
@@ -126,7 +126,7 @@ function App() {
   }, [allPositions, userId, botPos]);
 
   const potentialChatPartnerId = useMemo(() => {
-    if (isAdjacentToBot) return "Bot";
+    if (isAdjacentToBot) return 'Bot';
     if (adjacentUserIds.length > 0) return adjacentUserIds[0];
     return null;
   }, [isAdjacentToBot, adjacentUserIds]);
@@ -146,14 +146,14 @@ function App() {
     return !isChatActive && !!potentialChatPartnerId && !isPotentialPartnerBusy;
   }, [isChatActive, potentialChatPartnerId, isPotentialPartnerBusy]);
 
-  const addLog = useCallback((logData: Omit<LogEntry, "id" | "timestamp">) => {
+  const addLog = useCallback((logData: Omit<LogEntry, 'id' | 'timestamp'>) => {
     const now = new Date();
     const newLog: LogEntry = {
       id: `${now.getTime()}-${Math.random()}`,
-      timestamp: `${now.getHours().toString().padStart(2, "0")}:${now
+      timestamp: `${now.getHours().toString().padStart(2, '0')}:${now
         .getMinutes()
         .toString()
-        .padStart(2, "0")}`,
+        .padStart(2, '0')}`,
       ...logData,
     };
     setLogs((prevLogs) => [newLog, ...prevLogs]);
@@ -162,11 +162,11 @@ function App() {
   const handleTypingStatusChange = useCallback(
     async (isTyping: boolean) => {
       if (!userId) return;
-      const myRef = doc(db, "rooms", "default-lobby", "participants", userId);
+      const myRef = doc(db, 'rooms', 'default-lobby', 'participants', userId);
       try {
         await setDoc(myRef, { isTyping }, { merge: true });
       } catch (error) {
-        console.error("Typing status update failed:", error);
+        console.error('Typing status update failed:', error);
       }
     },
     [userId]
@@ -175,27 +175,27 @@ function App() {
   const handleStartChat = useCallback(async () => {
     if (!userId || !potentialChatPartnerId) return;
 
-    const myRef = doc(db, "rooms", "default-lobby", "participants", userId);
+    const myRef = doc(db, 'rooms', 'default-lobby', 'participants', userId);
 
-    if (potentialChatPartnerId === "Bot") {
+    if (potentialChatPartnerId === 'Bot') {
       const batch = writeBatch(db);
-      const botRef = doc(db, "rooms", "default-lobby", "participants", "Bot");
+      const botRef = doc(db, 'rooms', 'default-lobby', 'participants', 'Bot');
       const initialBotMessage =
-        "こんにちは！何かプログラミングで気になることはありますか？";
+        'こんにちは！何かプログラミングで気になることはありますか？';
 
       const myPos = allPositions[userId]?.position;
-      let botDirection: "UP" | "DOWN" | "LEFT" | "RIGHT" = "DOWN";
+      let botDirection: 'UP' | 'DOWN' | 'LEFT' | 'RIGHT' = 'DOWN';
       if (myPos) {
         const dx = myPos.x - botPos.x;
         const dy = myPos.y - botPos.y;
         if (Math.abs(dx) > Math.abs(dy)) {
-          botDirection = dx > 0 ? "LEFT" : "RIGHT";
+          botDirection = dx > 0 ? 'LEFT' : 'RIGHT';
         } else {
-          botDirection = dy > 0 ? "UP" : "DOWN";
+          botDirection = dy > 0 ? 'UP' : 'DOWN';
         }
       }
 
-      batch.update(myRef, { chattingWith: "Bot", message: "" });
+      batch.update(myRef, { chattingWith: 'Bot', message: '' });
       batch.set(
         botRef,
         {
@@ -211,20 +211,20 @@ function App() {
     } else {
       const partnerRef = doc(
         db,
-        "rooms",
-        "default-lobby",
-        "participants",
+        'rooms',
+        'default-lobby',
+        'participants',
         potentialChatPartnerId
       );
 
       const startChatBatch = writeBatch(db);
       startChatBatch.update(myRef, {
         chattingWith: potentialChatPartnerId,
-        message: "",
+        message: '',
       });
       startChatBatch.update(partnerRef, {
         chattingWith: userId,
-        message: "",
+        message: '',
       });
       await startChatBatch.commit();
 
@@ -232,11 +232,11 @@ function App() {
         const greetingBatch = writeBatch(db);
         const now = new Date();
         greetingBatch.update(myRef, {
-          message: "こんにちは",
+          message: 'こんにちは',
           messageTimestamp: now,
         });
         greetingBatch.update(partnerRef, {
-          message: "こんにちは",
+          message: 'こんにちは',
           messageTimestamp: now,
         });
         greetingBatch.commit();
@@ -248,26 +248,26 @@ function App() {
     if (!userId || !myChatPartnerId) return;
 
     const batch = writeBatch(db);
-    const myRef = doc(db, "rooms", "default-lobby", "participants", userId);
+    const myRef = doc(db, 'rooms', 'default-lobby', 'participants', userId);
 
-    batch.update(myRef, { chattingWith: null, message: "", isTyping: false });
+    batch.update(myRef, { chattingWith: null, message: '', isTyping: false });
 
-    if (myChatPartnerId === "Bot") {
-      const botRef = doc(db, "rooms", "default-lobby", "participants", "Bot");
+    if (myChatPartnerId === 'Bot') {
+      const botRef = doc(db, 'rooms', 'default-lobby', 'participants', 'Bot');
       batch.set(
         botRef,
-        { chattingWith: null, message: "", direction: "DOWN" },
+        { chattingWith: null, message: '', direction: 'DOWN' },
         { merge: true }
       );
     } else {
       const partnerRef = doc(
         db,
-        "rooms",
-        "default-lobby",
-        "participants",
+        'rooms',
+        'default-lobby',
+        'participants',
         myChatPartnerId
       );
-      batch.update(partnerRef, { chattingWith: null, message: "" });
+      batch.update(partnerRef, { chattingWith: null, message: '' });
     }
 
     await batch.commit();
@@ -277,19 +277,19 @@ function App() {
     async (messageText: string) => {
       if (!user || !user.uid || !messageText.trim() || !myChatPartnerId) return;
 
-      const myRef = doc(db, "rooms", "default-lobby", "participants", user.uid);
+      const myRef = doc(db, 'rooms', 'default-lobby', 'participants', user.uid);
       await updateDoc(myRef, {
         message: messageText,
         messageTimestamp: new Date(),
       });
 
-      if (myChatPartnerId === "Bot") {
-        const botRef = doc(db, "rooms", "default-lobby", "participants", "Bot");
+      if (myChatPartnerId === 'Bot') {
+        const botRef = doc(db, 'rooms', 'default-lobby', 'participants', 'Bot');
         await setDoc(
           botRef,
           {
             isTyping: true,
-            message: "考え中...",
+            message: '考え中...',
             messageTimestamp: new Date(),
           },
           { merge: true }
@@ -321,19 +321,19 @@ function App() {
         !user ||
         !user.uid ||
         user.uid === targetUserId ||
-        targetUserId === "Bot"
+        targetUserId === 'Bot'
       )
         return;
       const currentUserId = user.uid;
-      const currentUserRef = doc(db, "users", currentUserId);
-      const targetUserRef = doc(db, "users", targetUserId);
+      const currentUserRef = doc(db, 'users', currentUserId);
+      const targetUserRef = doc(db, 'users', targetUserId);
       try {
         const batch = writeBatch(db);
         batch.update(currentUserRef, { following: arrayUnion(targetUserId) });
         batch.update(targetUserRef, { followers: arrayUnion(currentUserId) });
         await batch.commit();
       } catch (error) {
-        console.error("フォロー処理中にエラーが発生しました:", error);
+        console.error('フォロー処理中にエラーが発生しました:', error);
       }
     },
     [user]
@@ -343,15 +343,15 @@ function App() {
     async (targetUserId: string) => {
       if (!user || !user.uid || user.uid === targetUserId) return;
       const currentUserId = user.uid;
-      const currentUserRef = doc(db, "users", currentUserId);
-      const targetUserRef = doc(db, "users", targetUserId);
+      const currentUserRef = doc(db, 'users', currentUserId);
+      const targetUserRef = doc(db, 'users', targetUserId);
       try {
         const batch = writeBatch(db);
         batch.update(currentUserRef, { following: arrayRemove(targetUserId) });
         batch.update(targetUserRef, { followers: arrayRemove(currentUserId) });
         await batch.commit();
       } catch (error) {
-        console.error("アンフォロー処理中にエラーが発生しました:", error);
+        console.error('アンフォロー処理中にエラーが発生しました:', error);
       }
     },
     [user]
@@ -361,9 +361,9 @@ function App() {
     if (user) {
       const positionDocRef = doc(
         db,
-        "rooms",
-        "default-lobby",
-        "participants",
+        'rooms',
+        'default-lobby',
+        'participants',
         user.uid
       );
       await setDoc(
@@ -413,7 +413,7 @@ function App() {
   useEffect(() => {
     if (prevIsChatActive.current && !isChatActive) {
       const partnerId = prevChatPartnerId.current;
-      if (partnerId && partnerId !== "Bot") {
+      if (partnerId && partnerId !== 'Bot') {
         const partnerInfo = prevAllPositions.current[partnerId];
         if (partnerInfo) {
           const linksForPartner = sharedLinks[partnerId] || [];
@@ -433,7 +433,7 @@ function App() {
     }
 
     if (!prevIsChatActive.current && isChatActive) {
-      setProfileView({ isOpen: false, view: "main", data: null });
+      setProfileView({ isOpen: false, view: 'main', data: null });
     }
 
     prevIsChatActive.current = isChatActive;
@@ -441,7 +441,7 @@ function App() {
   }, [isChatActive, myChatPartnerId, addLog, sharedLinks]);
 
   useEffect(() => {
-    const aiConfigDocRef = doc(db, "bot_ai", "Bot_AI");
+    const aiConfigDocRef = doc(db, 'bot_ai', 'Bot_AI');
     const unsubscribe = onSnapshot(aiConfigDocRef, (docSnap) => {
       if (docSnap.exists()) {
         setIsAiEnabled(docSnap.data().isAiEnabled === true);
@@ -453,7 +453,7 @@ function App() {
   }, []);
 
   useEffect(() => {
-    const timeDocRef = doc(db, "times", "time_usage");
+    const timeDocRef = doc(db, 'times', 'time_usage');
     const unsubscribe = onSnapshot(timeDocRef, (docSnap) => {
       if (docSnap.exists()) {
         setTimeRestriction(docSnap.data() as TimeRestriction);
@@ -480,12 +480,12 @@ function App() {
 
         if (now >= startTime && now <= endTime) {
           setIsAppActive(true);
-          setRestrictionMessage("");
+          setRestrictionMessage('');
         } else {
           setIsAppActive(false);
           const formatTime = (date: Date) => {
-            const hours = date.getHours().toString().padStart(2, "0");
-            const minutes = date.getMinutes().toString().padStart(2, "0");
+            const hours = date.getHours().toString().padStart(2, '0');
+            const minutes = date.getMinutes().toString().padStart(2, '0');
             return `${hours}:${minutes}`;
           };
           setRestrictionMessage(
@@ -496,7 +496,7 @@ function App() {
         }
       } else {
         setIsAppActive(true);
-        setRestrictionMessage("");
+        setRestrictionMessage('');
       }
     };
 
@@ -509,20 +509,20 @@ function App() {
   useEffect(() => {
     const unsubscribeAuth = auth.onAuthStateChanged((loginUser) => {
       if (loginUser) {
-        const userDocRef = doc(db, "users", loginUser.uid);
+        const userDocRef = doc(db, 'users', loginUser.uid);
         const unsubscribeUser = onSnapshot(userDocRef, async (userDocSnap) => {
           let userData = userDocSnap.data();
           if (!userDocSnap.exists()) {
             const initialData = {
               uid: loginUser.uid,
               email: loginUser.email,
-              userName: loginUser.displayName || "New User",
+              userName: loginUser.displayName || 'New User',
               avatarId: 0,
               followers: [],
               following: [],
               skills: [],
-              status: "",
-              content: "",
+              status: '',
+              content: '',
             };
             await setDoc(userDocRef, initialData);
             userData = initialData;
@@ -530,63 +530,69 @@ function App() {
           dispatch(
             login({
               uid: loginUser.uid,
-              email: loginUser.email || "",
-              displayName: loginUser.displayName || "",
-              userName: userData?.userName || "",
+              email: loginUser.email || '',
+              displayName: loginUser.displayName || '',
+              userName: userData?.userName || '',
               avatarId: userData?.avatarId ?? 0,
               followers: userData?.followers || [],
               following: userData?.following || [],
               skills: userData?.skills || [],
-              status: userData?.status || "",
-              content: userData?.content || "",
+              status: userData?.status || '',
+              content: userData?.content || '',
             })
           );
           const participantDocRef = doc(
             db,
-            "rooms",
-            "default-lobby",
-            "participants",
+            'rooms',
+            'default-lobby',
+            'participants',
             loginUser.uid
           );
           await setDoc(
             participantDocRef,
             {
               uid: loginUser.uid,
-              userName: userData?.userName || "",
+              userName: userData?.userName || '',
               avatarId: userData?.avatarId ?? 0,
               position: { x: DEFAULT_POS_X, y: DEFAULT_POS_Y },
-              direction: "DOWN",
+              direction: 'DOWN',
               chattingWith: null,
               isTyping: false,
-              message: "",
+              message: '',
             },
             { merge: true }
           );
         });
         const participantsQuery = query(
-          collection(db, "rooms", "default-lobby", "participants")
+          collection(db, 'rooms', 'default-lobby', 'participants')
         );
         const unsubscribeParticipants = onSnapshot(
           participantsQuery,
           (snapshot: QuerySnapshot) => {
             const positions: { [key: string]: ParticipantData } = {};
             snapshot.forEach((doc: QueryDocumentSnapshot) => {
-              const data = doc.data() as Omit<ParticipantData, "uid">;
+              const data = doc.data() as Omit<ParticipantData, 'uid'>;
               positions[doc.id] = {
                 ...data,
                 uid: doc.id,
               };
             });
 
-            const botDataFromDb = positions["Bot"] || {};
-            positions["Bot"] = {
+            const botDataFromDb = positions['Bot'] || {};
+            positions['Bot'] = {
               ...botDataFromDb,
-              uid: "Bot",
-              userName: "Bot",
+              uid: 'Bot',
+              userName: 'Bot',
               position: botPos,
-              direction: botDataFromDb.direction || "DOWN",
+              direction: botDataFromDb.direction || 'DOWN',
             };
-            delete (positions["Bot"] as Partial<ParticipantData>).avatarId;
+            delete (positions['Bot'] as Partial<ParticipantData>).avatarId;
+
+            // ▼▼▼ このデバッグコードを追加 ▼▼▼
+            console.log('===== setAllPositions が呼ばれます！ =====');
+            console.log('構築された本番データ (positions) の中身:', positions);
+            console.log('======================================');
+            // ▲▲▲ ここまで追加 ▲▲▲
 
             setAllPositions(positions);
           }
@@ -609,7 +615,7 @@ function App() {
     if (isChatActive && myChatPartnerId) {
       const partnerIsStillAdjacent =
         adjacentUserIds.includes(myChatPartnerId) ||
-        (myChatPartnerId === "Bot" && isAdjacentToBot);
+        (myChatPartnerId === 'Bot' && isAdjacentToBot);
       if (!partnerIsStillAdjacent) {
         handleEndChat();
       }
@@ -638,8 +644,9 @@ function App() {
                       handleUnfollow={handleUnfollow}
                       followingList={user?.following || []}
                       onProfileClick={() =>
-                        setProfileView({ isOpen: true, view: "main" })
+                        setProfileView({ isOpen: true, view: 'main' })
                       }
+                      allPositions={allPositions}
                     />
                   </ErrorBoundary>
                   <Experience
