@@ -46,16 +46,44 @@ const Log = ({
 
   // ユーザーIDからアバターIDを取得する関数
   const getUserAvatarId = (userId: string): number => {
+    // --- デバッグここから ---
+  console.log("--- getUserAvatarId デバッグ ---");
+  console.log("渡された userId:", userId);
+  // displayAllPositions は上の関数でも見られるので、不要ならこの行は消しても構いません
+  // console.log("検索対象の名簿 (displayAllPositions):", displayAllPositions); 
+  // --- デバッグここまで ---
     const userData =
       displayAllPositions[userId as keyof typeof displayAllPositions];
+      // --- デバッグここから ---
+  console.log("userId で検索した結果 (userData):", userData);
+  if (userData === undefined) {
+    console.warn(`[デバッグ] 名簿にID "${userId}" が見つかりません。`);
+  }
+  console.log("--------------------------");
+  // --- デバッグここまで ---
     return userData?.avatarId ?? 0;
+    // 見つからなかったら0番を返す
   };
 
   // ユーザーIDからユーザー名を取得する関数
   const getUserName = (userId: string): string => {
+    // --- デバッグここから ---
+  console.log("--- getUserName デバッグ ---");
+  console.log("渡された userId:", userId);
+  console.log("検索対象の名簿 (displayAllPositions):", displayAllPositions);
+  // --- デバッグここまで ---
     const userData =
       displayAllPositions[userId as keyof typeof displayAllPositions];
+      // --- デバッグここから ---
+  console.log("userId で検索した結果 (userData):", userData);
+  if (userData === undefined) {
+    // もし userData が見つからなかったら、警告メッセージを出す
+    console.warn(`[デバッグ] 名簿にID "${userId}" が見つかりません。`);
+  }
+  console.log("--------------------------");
+  // --- デバッグここまで ---
     return userData?.userName ?? userId;
+    // 見つからなかったらユーザーIDを返す
   };
 
   // 仮置き用のテストデータ

@@ -18,6 +18,7 @@ interface SidebarProps {
   handleUnfollow: (targetUserId: string) => void;
   followingList: string[];
   onProfileClick: () => void;
+  allPositions?: { [uid: string]: any };
 }
 
 const Sidebar = ({
@@ -26,6 +27,7 @@ const Sidebar = ({
   handleUnfollow,
   followingList,
   onProfileClick,
+  allPositions,
 }: SidebarProps) => {
   const [activePanel, setActivePanel] = useState<
     'log' | 'settings' | 'chatlinks' | null
@@ -153,6 +155,7 @@ const Sidebar = ({
             handleUnfollow={handleUnfollow}
             followingList={followingList}
             onChatLinksClick={handleChatLinksClick}
+            allPositions={allPositions}
           />
         )}
         {activePanel === 'settings' && (
