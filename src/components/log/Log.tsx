@@ -47,101 +47,100 @@ const Log = ({
   // ユーザーIDからアバターIDを取得する関数
   const getUserAvatarId = (userId: string): number => {
     // --- デバッグここから ---
-  console.log("--- getUserAvatarId デバッグ ---");
-  console.log("渡された userId:", userId);
-  // displayAllPositions は上の関数でも見られるので、不要ならこの行は消しても構いません
-  // console.log("検索対象の名簿 (displayAllPositions):", displayAllPositions); 
-  // --- デバッグここまで ---
+    console.log('--- getUserAvatarId デバッグ ---');
+    console.log('渡された userId:', userId);
+    // displayAllPositions は上の関数でも見られるので、不要ならこの行は消しても構いません
+    // console.log("検索対象の名簿 (displayAllPositions):", displayAllPositions);
+    // --- デバッグここまで ---
     const userData =
       displayAllPositions[userId as keyof typeof displayAllPositions];
-      // --- デバッグここから ---
-  console.log("userId で検索した結果 (userData):", userData);
-  if (userData === undefined) {
-    console.warn(`[デバッグ] 名簿にID "${userId}" が見つかりません。`);
-  }
-  console.log("--------------------------");
-  // --- デバッグここまで ---
+    // --- デバッグここから ---
+    console.log('userId で検索した結果 (userData):', userData);
+    if (userData === undefined) {
+      console.warn(`[デバッグ] 名簿にID "${userId}" が見つかりません。`);
+    }
+    console.log('--------------------------');
+    // --- デバッグここまで ---
     return userData?.avatarId ?? 0;
     // 見つからなかったら0番を返す
   };
 
   // ユーザーIDからユーザー名を取得する関数
   const getUserName = (userId: string): string => {
-    // --- デバッグここから ---
-  console.log("--- getUserName デバッグ ---");
-  console.log("渡された userId:", userId);
-  console.log("検索対象の名簿 (displayAllPositions):", displayAllPositions);
-  // --- デバッグここまで ---
+    //   --- デバッグここから ---
+    // console.log("--- getUserName デバッグ ---");
+    // console.log("渡された userId:", userId);
+    // console.log("検索対象の名簿 (displayAllPositions):", displayAllPositions);
+    // --- デバッグここまで ---
     const userData =
       displayAllPositions[userId as keyof typeof displayAllPositions];
-      // --- デバッグここから ---
-  console.log("userId で検索した結果 (userData):", userData);
-  if (userData === undefined) {
-    // もし userData が見つからなかったら、警告メッセージを出す
-    console.warn(`[デバッグ] 名簿にID "${userId}" が見つかりません。`);
-  }
-  console.log("--------------------------");
-  // --- デバッグここまで ---
+    //     --- デバッグここから ---
+    // console.log("userId で検索した結果 (userData):", userData);
+    // if (userData === undefined) {
+    //   // もし userData が見つからなかったら、警告メッセージを出す
+    //   console.warn(`[デバッグ] 名簿にID "${userId}" が見つかりません。`);
+    // }
+    // console.log("--------------------------");
+    // --- デバッグここまで ---
     return userData?.userName ?? userId;
     // 見つからなかったらユーザーIDを返す
   };
 
   // 仮置き用のテストデータ
-  const testLogs = [
-    {
-      id: 'test-1',
-      timestamp: '2024-01-15 14:30',
-      message: '田中さんとエンカウントしました',
-      userId: 'test-user-1',
-      userName: '田中太郎',
-      sharedLinks: ['https://example.com', 'https://github.com'],
-    },
-    {
-      id: 'test-2',
-      timestamp: '2024-01-15 15:45',
-      message: '佐藤さんとエンカウントしました',
-      userId: 'test-user-2',
-      userName: '佐藤花子',
-      sharedLinks: [],
-    },
-    {
-      id: 'test-3',
-      timestamp: '2024-01-15 16:20',
-      message: '山田さんとエンカウントしました',
-      userId: 'test-user-3',
-      userName: '山田次郎',
-      sharedLinks: ['https://reactjs.org'],
-    },
-    {
-      id: 'test-4',
-      timestamp: '2024-01-15 13:20',
-      message: '室さんとエンカウントしました',
-      userId: 'test-user-4',
-      userName: '室',
-      sharedLinks: ['https://note.com'],
-    },
-    {
-      id: 'test-4',
-      timestamp: '2024-01-15 13:20',
-      message: '室さんとエンカウントしました',
-      userId: 'test-user-4',
-      userName: '室',
-      sharedLinks: ['https://edge.com'],
-    },
-  ];
+  // const testLogs = [
+  //   {
+  //     id: 'test-1',
+  //     timestamp: '2024-01-15 14:30',
+  //     message: '田中さんとエンカウントしました',
+  //     userId: 'test-user-1',
+  //     userName: '田中太郎',
+  //     sharedLinks: ['https://example.com', 'https://github.com'],
+  //   },
+  //   {
+  //     id: 'test-2',
+  //     timestamp: '2024-01-15 15:45',
+  //     message: '佐藤さんとエンカウントしました',
+  //     userId: 'test-user-2',
+  //     userName: '佐藤花子',
+  //     sharedLinks: [],
+  //   },
+  //   {
+  //     id: 'test-3',
+  //     timestamp: '2024-01-15 16:20',
+  //     message: '山田さんとエンカウントしました',
+  //     userId: 'test-user-3',
+  //     userName: '山田次郎',
+  //     sharedLinks: ['https://reactjs.org'],
+  //   },
+  //   {
+  //     id: 'test-4',
+  //     timestamp: '2024-01-15 13:20',
+  //     message: '室さんとエンカウントしました',
+  //     userId: 'test-user-4',
+  //     userName: '室',
+  //     sharedLinks: ['https://note.com'],
+  //   },
+  //   {
+  //     id: 'test-4',
+  //     timestamp: '2024-01-15 13:20',
+  //     message: '室さんとエンカウントしました',
+  //     userId: 'test-user-4',
+  //     userName: '室',
+  //     sharedLinks: ['https://edge.com'],
+  //   },
+  // ];
 
-  // 仮置き用のユーザーデータ
-  const testAllPositions = {
-    'test-user-1': { avatarId: 0, userName: '田中太郎' },
-    'test-user-2': { avatarId: 1, userName: '佐藤花子' },
-    'test-user-3': { avatarId: 2, userName: '山田次郎' },
-    'test-user-4': { avatarId: 3, userName: '室' },
-  };
+  // // 仮置き用のユーザーデータ
+  // const testAllPositions = {
+  //   'test-user-1': { avatarId: 0, userName: '田中太郎' },
+  //   'test-user-2': { avatarId: 1, userName: '佐藤花子' },
+  //   'test-user-3': { avatarId: 2, userName: '山田次郎' },
+  //   'test-user-4': { avatarId: 3, userName: '室' },
+  // };
 
   // 実際のログが空の場合はテストデータを使用
-  const displayLogs = logs.length > 0 ? logs : testLogs;
-  const displayAllPositions =
-    Object.keys(allPositions).length > 0 ? allPositions : testAllPositions;
+  const displayLogs = logs;
+  const displayAllPositions = allPositions;
 
   // タイムスタンプでソート（最新が上に来るように）
   const sortedLogs = [...displayLogs].sort((a, b) => {
@@ -154,6 +153,11 @@ const Log = ({
     <div className="log-container">
       <h3>エンカウントログ</h3>
       <h4>ここに会話したユーザーの名前が表示されます</h4>
+       {sortedLogs.length === 0 ? (
+        <div className="no-logs">
+          <h5>まだ誰とも話していません</h5>
+          </div>
+      ) : (
       <div className="log-messages">
         {sortedLogs.map((log) => (
           <div key={log.id} className="log-entry">
@@ -211,6 +215,7 @@ const Log = ({
           </div>
         ))}
       </div>
+      )}
     </div>
   );
 };
